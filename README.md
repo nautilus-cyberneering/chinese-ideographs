@@ -1,6 +1,6 @@
 # Chinese Ideographs
 
-[See project context](project-context/README.md)
+[![Gold Drawings Processing](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml/badge.svg)](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml)
 
 ## Project Description
 
