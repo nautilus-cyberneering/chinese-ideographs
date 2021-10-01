@@ -1,0 +1,36 @@
+name: Gold Drawings Processing
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
+
+      # debug info to run locally with 'act'. It shows secrets!!
+      #- name: Dump context
+      #  uses: crazy-max/ghaction-dump-context@v1
+
+      - name: Debug
+        shell: bash
+        run: |      
+          echo -e "GITHUB_SHA: $GITHUB_SHA\n"
+          echo -e "GITHUB_REF: $GITHUB_REF\n"
+          echo -e "GITHUB_HEAD_REF: $GITHUB_HEAD_REF\n"
+          echo -e "GITHUB_BASE_REF: $GITHUB_BASE_REF\n"
+          echo -e "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME\n"
+          echo -e "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH\n" 
+          #cat $GITHUB_EVENT_PATH
+
+      - name: DVC diff
+        uses: ./.github/actions/dvc-diff
+        env:
+          DVC_REPO_DIR: ${{ github.workspace }}
+          PREVIOUS_REF: ${{ github.base_ref }}
+          CURRENT_REF: ${{ github.head_ref }}
