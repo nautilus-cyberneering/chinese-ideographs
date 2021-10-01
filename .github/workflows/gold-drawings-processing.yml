@@ -34,3 +34,8 @@ jobs:
           DVC_REPO_DIR: ${{ github.workspace }}
           PREVIOUS_REF: ${{ github.base_ref }}
           CURRENT_REF: ${{ github.head_ref }}
+
+      - name: Validate filenames
+        uses: ./.github/actions/validate-filenames
+        with:
+          filenames: "{[\"data/000001/32/000001-32.600.2.tif\"]}"
