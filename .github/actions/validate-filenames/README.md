@@ -10,7 +10,7 @@ You need to add the action in your workflow:
 - name: Validate filenames
   uses: ./.github/actions/validate-filenames
   with:
-    filenames: "{[\"data/000001/32/000001-32.600.2.tif\"]}"
+    filenames: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}'
 ```
 
 ### Inputs
@@ -27,23 +27,31 @@ No outputs.
 
 Build docker image:
 ```
-docker build -t validate-filenames .
+docker build --no-cache -t act-github-actions-validate-filenames .
 ```
 
-Run as GitHub action locally with docker:
+Run GitHub action locally with docker (from action root folder):
 ```
-docker run -it \
-  --env INPUT_FILENAMES="{[\"data/000001/32/000001-32.600.2.tif\"]}" \
-  --volume $(pwd):/github/workspace \
-  validate-filenames
+docker run --rm -it \
+  --env INPUT_FILENAMES='{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}' \
+  --volume $(pwd)/src:/app \
+  act-github-actions-validate-filenames
 ```
 
 Run action using `act`:
 ```
-act -j act pull_request
+act pull_request --job build
 ```
 
 Delete previous cached docker image:
 ```
-docker image rm act-github-actions-validate-filename
+docker image rm act-github-actions-validate-filenames
 ```
+
+### Troubleshooting
+
+Running this command `act pull_request -j build` you could get this error:
+```
+ADD failed: file not found in build context or excluded by .dockerignore: stat src: file does not exist
+```
+For some reason, the docker build fails. If you pre-build the image manually, it works. It seems the problem is inside `catthehacker/ubuntu` docker image.

@@ -2,7 +2,7 @@ name: Gold Drawings Processing
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, issue-* ]
 
 jobs:
   build:
@@ -38,4 +38,4 @@ jobs:
       - name: Validate filenames
         uses: ./.github/actions/validate-filenames
         with:
-          filenames: "{[\"data/000001/32/000001-32.600.2.tif\"]}"
+          filenames: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}'
