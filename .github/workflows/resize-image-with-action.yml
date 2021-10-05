@@ -1,0 +1,30 @@
+name: Resize image using GitHub Action
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  resize_with_github_action:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run action
+        uses: ./.github/actions/resize-image
+        with:
+          source_image: ${{ github.workspace }}/test.tif
+          destination_image: ${{ github.workspace }}/test-reduced.tif
+          width: 320
+          height: 200
+
+      - name: Archive resized image
+        uses: actions/upload-artifact@v2
+        if: ${{ !env.ACT }}
+        with:
+          name: sample-resized-image
+          path: test-reduced.tif
