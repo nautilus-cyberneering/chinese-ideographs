@@ -1,9 +1,10 @@
-# Contributing to Chinese Ideaographs Repository
+# Contributing to Chinese Ideographs Repository
 
 We are really happy to know that you want to contribute to the project!
 However, to ensure that the project keeps improving without compromising its integrity or quality, please follow this guide to ensure that your contribution is as useful as possible.
 
 ## Table of Contents
+
 1. [What to know before contributing](#what-to-know-before-contributing)
 2. [How can I contribute?](#how-can-i-contribute)
   - [Bug reporting](#bug-reporting)
@@ -11,52 +12,54 @@ However, to ensure that the project keeps improving without compromising its int
   - [Committing code to an issue](#committing-code-to-an-issue)
   - [Additional documentation](#additional-documentation)
 3. [Styleguides](#styleguides)
-  - [Swift styleguide](#swift-styleguide)
+  - [Code styleguide](#code-styleguide)
   - [Documentation styleguide](#documentation-styleguide)
-4. [Issues, commits and Pull Requests](#issues-commits-and-pull-requests)
+4. [Issues, Commits and Pull Requests](#issues-commits-and-pull-requests)
   - [Commit messages](#commit-messages)
 
 ## What to know before contributing
 
-.................................................
+This project is still at a proof of concept stage. That means the final repository organization and/or name might change. And please read also our [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md).
 
 ## How can I contribute?
 
 ### Bug reporting
 
 Before creating bug reports, please check if the problem has already been reported. If it has and the issue is still open, add a comment to the existing issue instead of opening a new one. If you find a Closed issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
+
 If the problem hasn't been reported, create a new [GitHub issue](https://guides.github.com/features/issues/), providing the following information:
 
 -   **A clear and descriptive title**  for the issue to identify the problem.
--   **A description of the  steps which reproduce the problem**, as detailed as possible.
+-   **A description of the steps which reproduce the problem**, as detailed as possible.
 -   **Describe the behavior you observed after following the steps**  and why that behaviour is erroneous or unexpected.
 -  If possible, **include screenshots and animated GIFs**  
 
 ### New features suggestion
 
 Features / improvement suggestions are submitted as  [GitHub issues](https://guides.github.com/features/issues/).  Please, before submitting a new one, please check if the improvement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
-When creating a improvement issue, please provide the following information:
+When creating an improvement issue, please provide the following information:
 
--   **Use a clear and descriptive title**  for the issue to identify the suggestion.
--   **Provide a description of the suggested enhancement**  as detailed as possible
--   **Explain why this improvement would be useful**  to most users 
+-   **Use a clear and descriptive title** for the issue to identify the suggestion.
+-   **Provide a description of the suggested enhancement** as detailed as possible
+-   **Explain why this improvement would be useful** to most users 
 
 ### Committing code to an issue
 
-Before writing any code for the repository, please review the Swift styleguides. Please, check that the new code will not compromise the quality, stability or security of the codebase.
-Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository.
+Before writing any code for the repository, please review the Python styleguides. 
+Please, check that the new code will not compromise the quality, stability or security of the codebase. 
+Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository. 
 When creating the commit and the pull request, please refer also to the section Issues, Commits and Pull Requests.
 Whenever is possible, new features should have Unit Tests to maintain (or increase) the code test coverage before adding it.
 
 ### Additional documentation
 
 New documentation contributions are also welcomed. They can improve the official documentation, add new examples or tutorials.
-The new documents must be added to the "docs" folder, and they must be created or modified using the same issue - pull request method as the code contributions.
+The new documents must be added to the "documentation" folder, and they must be created or modified using the same issue - pull request method as the code contributions.
 Document format should be MarkDown unless an alternative format is really necessary. Naming should adhere to underscore [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
 
 ## Styleguides
 
-### Swift styleguide
+### Code styleguide
 
 #### Fundamentals
 
@@ -66,31 +69,9 @@ Document format should be MarkDown unless an alternative format is really necess
 
 #### Conventions
 
-- Prefer methods and properties to free functions.
+#### Python
 
-- Prefer to locate parameters with defaults toward the end.
-
-- Conditional code checks "the golden path" (the most probable option) first. 
-
-- Inverted checks (like !incorrect) are discouraged because of poor readability.
-
-- Use argument labels (unless not useful or part of a grammatical phrase)
-
-- If possible, avoid *any* type.
-
-- Use self only when required by the compiler (i.e. disambiguate properties from arguments in initializers)
-
-#### Code editing
-
-- Use 2 blank spaces block indent
-
-- Indentation is made with whitespaces, not with tabs
-
-- Semicolons (;) are not used, either to terminate or separate statements.
-
-- Annotations go onto a separate line before the declaration.
-
-- Use OTBS brackets style
+We are using autopep8 to enforce [PEP 8 -- Style Guide for Python](https://www.python.org/dev/peps/pep-0008/)
 
 #### Naming
 
@@ -128,9 +109,13 @@ Document format should be MarkDown unless an alternative format is really necess
 
 Documentation should use MarkDown (.md) format. It must be written at least in English, but additional localized versions are also possible.
 
-## Issues, commits and Pull Requests
+## Issues, Commits and Pull Requests
 
 Each pull request for new commits must be related to a particular issue, and will be reviewed by the community before being merged or rebased to the codebase.
+
+### Branches
+
+Every issue should have its branch following this format: "issue-##-short-description-using-kebab-case"
 
 ### Commit messages
 
