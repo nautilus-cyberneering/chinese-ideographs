@@ -16,8 +16,11 @@ def parse_dvd_diff_ouput(dvd_diff):
     # only interesting in added or modified files
     filenames = data['added'] + data['modified']
 
-    # extract path from all items
+    # parse path from all items
     filenames = [path_object['path'] for path_object in filenames]
+
+    # parse basename
+    filenames = [os.path.basename(filename) for filename in filenames]
 
     return filenames
 

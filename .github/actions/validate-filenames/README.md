@@ -25,12 +25,14 @@ No outputs.
 
 ### Development
 
+> IMPORTANT: this sample commands have to be executed from `.github/actions/validate-filenames` folder, except for `act`commands.
+
 Build docker image:
 ```
 docker build --no-cache -t act-github-actions-validate-filenames .
 ```
 
-Run GitHub action locally with docker (from action root folder):
+Run GitHub action locally with docker:
 ```
 docker run --rm -it \
   --env INPUT_FILENAMES='{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}' \
@@ -46,6 +48,20 @@ act pull_request --job build
 Delete previous cached docker image:
 ```
 docker image rm act-github-actions-validate-filenames
+```
+
+### Testing
+
+Build docker image:
+```
+docker build --target testing --no-cache -t  act-github-actions-validate-filenames-test .
+```
+
+Run tests:
+```
+docker run --rm \
+  --volume $(pwd)/src:/app \
+  act-github-actions-validate-filenames-test pytest
 ```
 
 ### Troubleshooting
