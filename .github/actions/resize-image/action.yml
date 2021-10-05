@@ -1,0 +1,20 @@
+name: "Resize image"
+description: "Resize a image using Libvips, with Lanczos kernel algorithm"
+author: "Yeray David Rodriguez"
+inputs:
+  source_image:
+    description: "Filename of the source image"
+    required: true
+  destination_image:
+    description: "Filename of the resized image"
+    required: true
+  width:
+    description: "Maximun destination image width"
+    required: true
+  height:
+    description: "Maximun destination image height"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
