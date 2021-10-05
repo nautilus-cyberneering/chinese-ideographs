@@ -1,5 +1,7 @@
 ## Filenames and Folder Structure Conventions
 
+For codes explanation see [File Naming Convention](File_Naming_Convention.md)
+
 Format:
 ```
 {ARTWORK_ID}-{PURPOSE_CODE}.{TRANSFORMATION_CODE}.{TYPE_CODE}.tif
