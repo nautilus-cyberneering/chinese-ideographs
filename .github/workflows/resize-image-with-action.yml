@@ -23,7 +23,7 @@ jobs:
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
         run: dvc pull --remote azure      
 
-      - name: Generate Base iamge
+      - name: Generate Base image
         uses: ./.github/actions/resize-image
         with:
           source_image: ${{ github.workspace }}/data/000001/32/000001-32.600.2.tif
