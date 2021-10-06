@@ -26,8 +26,8 @@ jobs:
       - name: Generate Base image
         uses: ./.github/actions/resize-image
         with:
-          source_image: ${{ github.workspace }}/data/000001/32/000001-32.600.2.tif
-          destination_image: ${{ github.workspace }}/data/000001/42/000001-42.600.2.tif
+          source_image: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
+          destination_image: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif
           width: 320
           height: 200
 
