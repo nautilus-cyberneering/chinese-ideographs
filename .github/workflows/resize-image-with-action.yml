@@ -2,7 +2,7 @@ name: Resize image using GitHub Action
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, issue-* ]
 
 jobs:
   resize_with_github_action:
@@ -17,8 +17,8 @@ jobs:
       - name: Run action
         uses: ./.github/actions/resize-image
         with:
-          source_image: ${{ github.workspace }}/test.tif
-          destination_image: ${{ github.workspace }}/test-reduced.tif
+          source_image: ${{ github.workspace }}/data/000001/32/000001-32.600.2.tif
+          destination_image: ${{ github.workspace }}/data/000001/42/000001-42.600.2.tif
           width: 320
           height: 200
 
