@@ -28,3 +28,4 @@ jobs:
         with:
           name: sample-resized-image
           path: test-reduced.tif
+  
