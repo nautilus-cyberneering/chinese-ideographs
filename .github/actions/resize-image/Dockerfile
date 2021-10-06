@@ -7,7 +7,6 @@ RUN pip install pyvips
 ADD ./src /app
 WORKDIR /app
 
-
 FROM builder AS linting
 RUN pip install --upgrade autopep8
 # Fail when autopep8 finds errors:
