@@ -13,11 +13,7 @@ def main():
     source_image_path = os.environ["INPUT_SOURCE_IMAGE"]
     resized_image_path = os.environ["INPUT_DESTINATION_IMAGE"]
     output_size = parse_size_parametres()
-
     resize_image(source_image_path, resized_image_path, output_size)
-
-    output = f"Resized image {resized_image_path}"
-    print(output)
 
 
 if __name__ == "__main__":
