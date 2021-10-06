@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  resize_with_github_action:
+  resize:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -14,7 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run action
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+        run: dvc pull --remote azure      
+
+      - name: Generate Base iamge
         uses: ./.github/actions/resize-image
         with:
           source_image: ${{ github.workspace }}/data/000001/32/000001-32.600.2.tif
