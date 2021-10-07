@@ -10,10 +10,13 @@ def parse_size_parametres():
 
 
 def main():
-    source_image_path = os.environ["INPUT_SOURCE_IMAGE"]
-    resized_image_path = os.environ["INPUT_DESTINATION_IMAGE"]
+    source_images_path = os.environ["INPUT_SOURCE_IMAGES"].split(',')
+    resized_images_path = os.environ["INPUT_DESTINATION_IMAGES"].split(',')
     output_size = parse_size_parametres()
-    resize_image(source_image_path, resized_image_path, output_size)
+    for index, image_path in enumerate(source_images_path):
+        print("Resizing", image_path, "to", output_size[0],
+             "x", output_size[1], "as", resized_images_path[index])
+        resize_image(image_path, resized_images_path[index], output_size)
 
 
 if __name__ == "__main__":

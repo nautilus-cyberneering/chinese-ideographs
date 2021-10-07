@@ -19,15 +19,15 @@ jobs:
 
       - name: Pull images from remote storage
         env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+          AZURE_STORAGE_ACCOUNT: nautiluscyberneering
+          AZURE_STORAGE_SAS_TOKEN: '?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2022-03-31T19:18:40Z&st=2021-10-07T11:18:40Z&spr=https&sig=R7akkWtRpdzckb5MfMlZ0GF6ogDlIZTZ1R%2BN9ph437Y%3D'
         run: dvc pull --remote azure      
 
       - name: Generate Base image
         uses: ./.github/actions/resize-image
         with:
-          source_image: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
-          destination_image: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif
+          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif, ${{ github.workspace }}/data/000002/32/000002-32.600.3.tif 
+          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif, ${{ github.workspace }}/data/000002/42/000002-32.600.3.tif 
           width: 320
           height: 200
 
