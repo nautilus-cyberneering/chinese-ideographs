@@ -55,3 +55,9 @@ jobs:
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}
+
+      - name: Validate Gold images folder
+        if: steps.dvc-diff.outputs.diff != '{}'
+        uses: ./.github/actions/validate-filenames
+        with:
+          filenames: ${{ steps.dvc-diff.outputs.diff }}          
