@@ -65,9 +65,14 @@ The given product roadmap does not represent a commitment, guarantee, obligation
 
 ## Project Documentation
 
-* [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)
-* [File Naming Convention](documentation/File_Naming_Convention.md)
-* [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
-* [Gold Images](documentation/Gold_Images.md)
-* [Governance](documentation/Governance.md)
+### Governance and Contribution
 
+↳ [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)  
+↳ [Governance](documentation/Governance.md)
+
+### Conventions
+
+↳ [Naming Codes](documentation/Naming_Codes.md)  
+↳ [Filename Structure](documentation/Filename_Structure.md)  
+↳ [Repository Structure](documentation/Repository_Structures.md)  
+↳ [Gold Images](documentation/Gold_Images.md)
