@@ -1,20 +1,14 @@
-#!/bin/sh
-
-# debug
-#env
-echo "PREVIOUS_REF: $PREVIOUS_REF"
-echo "CURRENT_REF: $CURRENT_REF"
+#!/bin/bash
 
 cd $DVC_REPO_DIR
-pwd
 
-# https://github.com/iterative/dvc/issues/6720
-echo "dvc diff --show-json $PREVIOUS_REF $CURRENT_REF"
 DIFF=$(dvc diff --show-json $PREVIOUS_REF $CURRENT_REF)
 
-# Debug. Force output value
-#DIFF='{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}'
+ERROR=$(dvc diff --show-json $PREVIOUS_REF $CURRENT_REF 2>&1)
 
-echo $DIFF
+# Patch for this issue: https://github.com/Nautilus-Cyberneering/chinese-ideographs/issues/38
+if [[ $ERROR =~ "ERROR: unexpected error - 'not in cache'" ]]; then
+   DIFF='{"added": [], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+fi
 
 echo "::set-output name=diff::$DIFF"
