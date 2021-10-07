@@ -3,10 +3,10 @@ description: "Resize a image using Libvips, with Lanczos kernel algorithm"
 author: "Yeray David Rodriguez"
 inputs:
   source_images:
-    description: "Filename of the source image"
+    description: "Filename of the source images"
     required: true
   destination_images:
-    description: "Filename of the resized image"
+    description: "Filename of the resized images"
     required: true
   width:
     description: "Maximun destination image width"
