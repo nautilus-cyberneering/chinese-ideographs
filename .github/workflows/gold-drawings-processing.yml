@@ -34,6 +34,8 @@ jobs:
           git remote -v
           git status
           git show-ref
+          git log --oneline
+          echo "git diff ${{ github.base_ref }} ${{ github.head_ref }}"
           git diff ${{ github.base_ref }} ${{ github.head_ref }}
 
       - name: DVC diff
