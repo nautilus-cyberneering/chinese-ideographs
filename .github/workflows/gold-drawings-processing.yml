@@ -29,6 +29,11 @@ jobs:
           echo -e "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH\n" 
           #cat $GITHUB_EVENT_PATH
 
+      - name: git diff
+        run: |
+          git remote -v
+          git diff ${{ github.base_ref }} ${{ github.ref }}
+
       - name: DVC diff
         id: dvc-diff
         uses: ./.github/actions/dvc-diff
