@@ -21,5 +21,3 @@ def resize_image(source_image_path, resized_image_path, output_size):
     createOutputFolder(resized_image_path)
     result.write_to_file(resized_image_path)
     result.write_to_file(resized_image_path)
-    print("Image", source_image_path, "resized to", result.width,
-          "x", result.height, "as", resized_image_path)
