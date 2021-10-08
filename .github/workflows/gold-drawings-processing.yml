@@ -33,17 +33,17 @@ jobs:
         run: |
           #git remote -v
           #git status
-          #git show-ref
+          git show-ref
           #git log --oneline
-          #echo "git diff ${{ github.base_ref }} HEAD"
-          git diff ${{ github.base_ref }} HEAD
+          #echo "git diff origin/${{ github.base_ref }} HEAD"
+          git diff origin/${{ github.base_ref }} HEAD
 
       - name: DVC diff
         id: dvc-diff
         uses: ./.github/actions/dvc-diff
         env:
           DVC_REPO_DIR: ${{ github.workspace }}
-          PREVIOUS_REF: ${{ github.base_ref }}
+          PREVIOUS_REF: "origin/${{ github.base_ref }}"
           CURRENT_REF: HEAD
 
       - name: Debug diff ouput
