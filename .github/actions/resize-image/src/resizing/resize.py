@@ -20,4 +20,3 @@ def resize_image(source_image_path, resized_image_path, output_size):
         image, output_size), kernel='lanczos2')
     createOutputFolder(resized_image_path)
     result.write_to_file(resized_image_path)
-    result.write_to_file(resized_image_path)
