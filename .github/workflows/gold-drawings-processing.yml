@@ -29,13 +29,13 @@ jobs:
           echo -e "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH\n" 
           #cat $GITHUB_EVENT_PATH
 
-      - name: git diff
+      - name: Git diff
         run: |
-          git remote -v
-          git status
-          git show-ref
-          git log --oneline
-          echo "git diff origin/${{ github.base_ref }} HEAD"
+          #git remote -v
+          #git status
+          #git show-ref
+          #git log --oneline
+          #echo "git diff origin/${{ github.base_ref }} HEAD"
           git diff origin/${{ github.base_ref }} HEAD
 
       - name: DVC diff
