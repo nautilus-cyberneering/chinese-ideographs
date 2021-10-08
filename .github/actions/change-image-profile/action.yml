@@ -6,7 +6,7 @@ inputs:
     description: "Filename of the source images"
     required: true
   destination_images:
-    description: "Filename of the resized images"
+    description: "Filename of the modified images"
     required: true
   profile:
     description: "ICC Profile for destination images (i.e. sRGB )"
