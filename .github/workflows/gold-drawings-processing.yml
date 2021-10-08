@@ -35,8 +35,8 @@ jobs:
           git status
           git show-ref
           git log --oneline
-          echo "git diff ${{ github.base_ref }} ${{ github.head_ref }}"
-          git diff ${{ github.base_ref }} ${{ github.head_ref }}
+          echo "git diff origin/${{ github.base_ref }} ${{ github.head_ref }}"
+          git diff origin/${{ github.base_ref }} ${{ github.head_ref }}
 
       - name: DVC diff
         id: dvc-diff
