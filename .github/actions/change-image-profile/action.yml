@@ -1,0 +1,17 @@
+name: "Change image profile"
+description: "Change the color profile of a image using Libvips"
+author: "Yeray David Rodriguez"
+inputs:
+  source_images:
+    description: "Filename of the source images"
+    required: true
+  destination_images:
+    description: "Filename of the resized images"
+    required: true
+  profile:
+    description: "ICC Profile for destination images (i.e. sRGB )"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
