@@ -20,6 +20,7 @@ jobs:
       - name: Debug env vars
         shell: bash
         run: |      
+          git show-ref
           echo -e "GITHUB_SHA: $GITHUB_SHA\n"
           echo -e "GITHUB_REF: $GITHUB_REF\n"
           echo -e "GITHUB_HEAD_REF: $GITHUB_HEAD_REF\n"
