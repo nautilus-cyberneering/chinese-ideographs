@@ -2,6 +2,8 @@
 
 cd $DVC_REPO_DIR
 
+git diff $PREVIOUS_REF $CURRENT_REF
+
 DIFF=$(dvc diff --show-json $PREVIOUS_REF $CURRENT_REF)
 
 ERROR=$(dvc diff --show-json $PREVIOUS_REF $CURRENT_REF 2>&1)
