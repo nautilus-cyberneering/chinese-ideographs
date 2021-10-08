@@ -34,7 +34,7 @@ jobs:
         env:
           DVC_REPO_DIR: ${{ github.workspace }}
           PREVIOUS_REF: ${{ github.base_ref }}
-          CURRENT_REF: ${{ github.head_ref }}
+          CURRENT_REF: ${{ github.ref }}
 
       - name: Debug diff ouput
         run: |
