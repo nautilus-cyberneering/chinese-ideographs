@@ -14,23 +14,22 @@ def parse_dvd_diff_ouput(dvd_diff):
     data = json.loads(dvd_diff)
 
     # only interesting in added or modified files
-    filenames = data['added'] + data['modified']
+    filepaths = data['added'] + data['modified']
 
     # parse path from all items
-    filenames = [path_object['path'] for path_object in filenames]
+    filepaths = [path_object['path'] for path_object in filepaths]
 
-    # parse basename
-    filenames = [os.path.basename(filename) for filename in filenames]
-
-    return filenames
+    return filepaths
 
 
 def main():
     dvd_diff = os.environ["INPUT_FILEPATHS"]
 
-    filenames = parse_dvd_diff_ouput(dvd_diff)
+    filepaths = parse_dvd_diff_ouput(dvd_diff)
 
-    validate_filepaths(filenames)
+    validate_filepaths(filepaths)
+
+    print(filepaths)
 
 
 if __name__ == "__main__":

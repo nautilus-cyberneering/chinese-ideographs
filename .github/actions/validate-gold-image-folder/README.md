@@ -46,7 +46,7 @@ Process exception when validation fails.
 
 Build docker image:
 ```
-docker build --no-cache -t act-github-actions-validate-gold-image-folder .
+docker build --no-cache -t act-github-actions-validate-gold-image-folder:latest .
 ```
 
 Run GitHub action locally with docker:

@@ -58,12 +58,26 @@ jobs:
         run: |
           echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
 
-      - name: Validate filenames
+      - name: Validate filenames (act)
+        if: ${{ env.ACT }}
+        uses: ./.github/actions/validate-filenames
+        with:
+          filenames: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+
+      - name: Validate filenames (runner)
+        if: ${{ !env.ACT }}
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}
 
-      - name: Validate Gold images folder
-        uses: ./.github/actions/validate-filenames
+      - name: Validate Gold images folder (act)
+        if: ${{ env.ACT }}
+        uses: ./.github/actions/validate-gold-image-folder
         with:
-          filenames: ${{ steps.dvc-diff.outputs.diff }}          
+          filepaths: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+
+      - name: Validate Gold images folder (runner)
+        if: ${{ !env.ACT }}
+        uses: ./.github/actions/validate-gold-image-folder
+        with:
+          filepaths: ${{ steps.dvc-diff.outputs.diff }}
