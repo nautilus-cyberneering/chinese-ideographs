@@ -21,6 +21,7 @@ jobs:
         shell: bash
         run: |
           # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
+          echo -e "GITHUB_WORKSPACE: $GITHUB_WORKSPACE\n"
           echo -e "GITHUB_SHA: $GITHUB_SHA\n"
           echo -e "GITHUB_REF: $GITHUB_REF\n"
           echo -e "GITHUB_HEAD_REF: $GITHUB_HEAD_REF\n"
@@ -29,35 +30,40 @@ jobs:
           echo -e "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH\n" 
           #cat $GITHUB_EVENT_PATH
 
+      - name: Set env (local)
+        if: ${{ env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
+        run: |
+          echo "PREVIOUS_REF=HEAD" >> $GITHUB_ENV
+          echo "CURRENT_REF=" >> $GITHUB_ENV
+
+      - name: Set env (runner)
+        if: ${{ !env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
+        run: |
+          echo "PREVIOUS_REF=origin/${{ GITHUB_BASE_REF }}" >> $GITHUB_ENV
+          echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
+
       - name: Git diff
         run: |
-          #git remote -v
-          #git status
           git show-ref
-          #git log --oneline
-          #echo "git diff origin/${{ github.base_ref }} HEAD"
-          git diff origin/${{ github.base_ref }} HEAD
+          echo "git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}"
+          git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}
 
       - name: DVC diff
         id: dvc-diff
         uses: ./.github/actions/dvc-diff
         env:
-          DVC_REPO_DIR: ${{ github.workspace }}
-          PREVIOUS_REF: "origin/${{ github.base_ref }}"
-          CURRENT_REF: HEAD
+          DVC_REPO_DIR: "${{ github.workspace }}"
 
       - name: Debug diff ouput
         run: |
           echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
 
       - name: Validate filenames
-        if: steps.dvc-diff.outputs.diff != '{}'
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}
 
       - name: Validate Gold images folder
-        if: steps.dvc-diff.outputs.diff != '{}'
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}          
