@@ -39,7 +39,7 @@ jobs:
       - name: Set env (runner)
         if: ${{ !env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
         run: |
-          echo "PREVIOUS_REF=origin/${{ GITHUB_BASE_REF }}" >> $GITHUB_ENV
+          echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
           echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
 
       - name: Git diff
