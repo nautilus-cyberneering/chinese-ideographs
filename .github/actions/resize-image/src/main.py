@@ -15,7 +15,7 @@ def main():
     output_size = parse_size_parametres()
     for index, image_path in enumerate(source_images_path):
         print("Resizing", image_path, "to", output_size[0],
-             "x", output_size[1], "as", resized_images_path[index])
+              "x", output_size[1], "as", resized_images_path[index])
         resize_image(image_path, resized_images_path[index], output_size)
 
 
