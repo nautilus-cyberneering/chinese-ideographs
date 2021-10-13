@@ -6,9 +6,8 @@
 - [Project Description](#project-description)
 - [Project Roadmap](#project-roadmap)
 - [Project Documentation](#project-documentation)
+---
 
-<br>
-<br>
 
 ## Project Description
 
@@ -16,7 +15,7 @@
 
 ### Need
 
-Developing large and complex digital tools requires software development skills making it difficult for artists to contribute without these. Also, the more humans are involved in any project, the easier errors are generated. We need to generate a repository structure and automated continuous workflow to handle a large media database made up of images, sound and video, which can be expanded and updated easily with a minimum level of technical skills and human intervention in the process of website population, book generation and game creation by different contributor teams.
+Developing large and complex digital tools requires software development skills making it difficult for artists to contribute without these. Also, the more humans are involved in any project, the easier errors are generated.We need to generate a repository structure and automated continuous workflow to handle a large media database made up of images, sound and video, which can be expanded and updated easily with a minimum level of technical skills and human intervention in the process of website population, book generation and game creation by different contributor teams.
 
 ### Approach
 
