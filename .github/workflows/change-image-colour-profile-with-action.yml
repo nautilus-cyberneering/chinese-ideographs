@@ -1,11 +1,11 @@
-name: Change image profile using GitHub Action
+name: Change image colour profile using GitHub Action
 
 on:
   push:
     branches: [ main, issue-* ]
 
 jobs:
-  change-profile:
+  change-colour-profile:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,11 +23,11 @@ jobs:
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         run: dvc pull --remote azure      
 
-      - name: Generate Base image
+      - name: Change image profile
         uses: ./.github/actions/change-image-profile
         with:
-          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif, ${{ github.workspace }}/data/000002/32/000002-32.600.3.tif 
-          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif, ${{ github.workspace }}/data/000002/42/000002-32.600.3.tif 
+          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
+          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif
           profile: sRGB
 
       - name: Archive resized image
