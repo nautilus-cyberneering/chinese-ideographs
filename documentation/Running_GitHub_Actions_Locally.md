@@ -36,3 +36,9 @@ ADD failed: file not found in build context or excluded by .dockerignore: stat s
 That's because the folder has not been copied inside the docker container. `act` uses a `docker cp ...` command to copy your source code into the container.
 
 We do not know why that is happening but you can fix it by renaming the folder that has not been copied, running `act` command, and then renaming it back to the original name.
+
+### ACT run fails on M1-based MacBooks
+
+When `act` is run in MacBooks with Apple M1 chip, it can return to the command line just after the "Planning job"
+
+This is easily solved adding the `--container-architecture linux/amd64` option at the end of the command.
