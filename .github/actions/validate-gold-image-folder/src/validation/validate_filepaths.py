@@ -23,7 +23,7 @@ def validate_filepath(filepath):
 
     if (expected_folder != actual_folder):
         raise InvalidImageFolderException(
-            f'Invalid folder for image. The file "{ filename }" should be in the folder "{expected_folder}"')
+            f'Invalid folder for image. The file "{ filepath }" should be in the folder "{ expected_folder }"')
 
 
 def validate_filepaths(filepaths):
