@@ -39,6 +39,6 @@ We do not know why that is happening but you can fix it by renaming the folder t
 
 ### ACT run fails on M1-based MacBooks
 
-When `act` is run in MacBooks with Apple M1 chip, it can return to the command line just after the "Planning job"
+When `act` is run in MacBooks with Apple M1 chip, it may happen that unexpectedly one returns to the commandline just after the "Planning job"
 
 This is easily solved adding the `--container-architecture linux/amd64` option at the end of the command.
