@@ -1,0 +1,38 @@
+name: Validate image size using GitHub Action
+
+on:
+  push:
+    branches: [ main, issue-* ]
+
+jobs:
+  validate-size:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+
+      - name: Validate Base image
+        uses: ./.github/actions/validate-image-size
+        with:
+          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif,${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
+          min_size: 320
+          max_size: 340000
+
+      - name: Archive resized image
+        uses: actions/upload-artifact@v2
+        if: ${{ !env.ACT }}
+        with:
+          name: sample-resized-image
+          path: test-reduced.tif
+  

@@ -1,0 +1,17 @@
+name: "Validate image size"
+description: "Validate image size (width x height) using a maximun dimension value"
+author: "Yeray David Rodriguez"
+inputs:
+  source_images:
+    description: "Filename of the source images"
+    required: true
+  min_size:
+    description: "Minimun image width or height value"
+    required: true
+  max_size:
+    description: "Maximum image width or height value"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
