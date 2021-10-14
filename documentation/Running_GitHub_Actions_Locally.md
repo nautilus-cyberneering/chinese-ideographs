@@ -42,3 +42,24 @@ We do not know why that is happening but you can fix it by renaming the folder t
 When `act` is run in MacBooks with Apple M1 chip, it may happen that unexpectedly one returns to the commandline just after the "Planning job"
 
 This is easily solved adding the `--container-architecture linux/amd64` option at the end of the command.
+
+### Dockerfile GitHub Action is not able to set output variables
+
+Issue: https://github.com/nektos/act/issues/839
+
+There is at least one case where you do not get the right value from the previous output. Until the bug is fixed, we are creating two versions of the same step in the workflow:
+
+```
+- name: Validate Gold images folder (act)
+  if: ${{ env.ACT }}
+  uses: ./.github/actions/validate-gold-image-folder
+  with:
+   filepaths: '{"added": [{"path": "data/000001/42/000001-42.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+
+- name: Validate Gold images folder (runner)
+  if: ${{ !env.ACT }}
+  uses: ./.github/actions/validate-gold-image-folder
+  with:
+    filepaths: ${{ steps.dvc-diff.outputs.diff }}
+```
+One for `act` (development) and the other one for GitHub runner (production). In the first one, you can set the value directly.
