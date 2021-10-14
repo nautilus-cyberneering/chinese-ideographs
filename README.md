@@ -77,4 +77,5 @@ The given product roadmap does not represent a commitment, guarantee, obligation
 * [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
 * [Gold Images](documentation/Gold_Images.md)
 * [Governance](documentation/Governance.md)
+* [Running GitHub Actions Locally](documentation/Running_GitHub_Actions_Locally.md)
 
