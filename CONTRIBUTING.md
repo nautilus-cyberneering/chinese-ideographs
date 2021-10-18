@@ -7,15 +7,15 @@ However, to ensure that the project keeps improving without compromising its int
 
 1. [What to know before contributing](#what-to-know-before-contributing)
 2. [How can I contribute?](#how-can-i-contribute)
-  - [Bug reporting](#bug-reporting)
-  - [New features suggestion](#new-features-suggestion)
-  - [Committing code to an issue](#committing-code-to-an-issue)
-  - [Additional documentation](#additional-documentation)
+    - [Bug reporting](#bug-reporting)
+    - [New features suggestion](#new-features-suggestion)
+    - [Committing code to an issue](#committing-code-to-an-issue)
+    - [Additional documentation](#additional-documentation)
 3. [Styleguides](#styleguides)
-  - [Code styleguide](#code-styleguide)
-  - [Documentation styleguide](#documentation-styleguide)
+    - [Code styleguide](#code-styleguide)
+    - [Documentation styleguide](#documentation-styleguide)
 4. [Issues, Commits and Pull Requests](#issues-commits-and-pull-requests)
-  - [Commit messages](#commit-messages)
+    - [Commit messages](#commit-messages)
 
 ## What to know before contributing
 
@@ -29,27 +29,29 @@ Before creating bug reports, please check if the problem has already been report
 
 If the problem hasn't been reported, create a new [GitHub issue](https://guides.github.com/features/issues/), providing the following information:
 
--   **A clear and descriptive title**  for the issue to identify the problem.
--   **A description of the steps which reproduce the problem**, as detailed as possible.
--   **Describe the behavior you observed after following the steps**  and why that behaviour is erroneous or unexpected.
--  If possible, **include screenshots and animated GIFs**  
+- **A clear and descriptive title**  for the issue to identify the problem.
+- **A description of the steps which reproduce the problem**, as detailed as possible.
+- **Describe the behavior you observed after following the steps**  and why that behaviour is erroneous or unexpected.
+- If possible, **include screenshots and animated GIFs**  
 
 ### New features suggestion
 
 Features / improvement suggestions are submitted as  [GitHub issues](https://guides.github.com/features/issues/).  Please, before submitting a new one, please check if the improvement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 When creating an improvement issue, please provide the following information:
 
--   **Use a clear and descriptive title** for the issue to identify the suggestion.
--   **Provide a description of the suggested enhancement** as detailed as possible
--   **Explain why this improvement would be useful** to most users 
+- **Use a clear and descriptive title** for the issue to identify the suggestion.
+- **Provide a description of the suggested enhancement** as detailed as possible
+- **Explain why this improvement would be useful** to most users 
 
 ### Committing code to an issue
 
-Before writing any code for the repository, please review the Python styleguides. 
-Please, check that the new code will not compromise the quality, stability or security of the codebase. 
-Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository. 
-When creating the commit and the pull request, please refer also to the section Issues, Commits and Pull Requests.
-Whenever is possible, new features should have Unit Tests to maintain (or increase) the code test coverage before adding it.
+Before writing any code for the repository please do the following:  
+
+- Review the applicable styleguides.
+- Check that the new code will not compromise the quality, stability or security of the codebase.
+- Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository.
+- When creating the commit and the pull request, please refer also to the section Issues, Commits and Pull Requests.
+- Whenever it is possible, new features should have Unit Tests to maintain (or increase) the code test coverage before adding it.
 
 ### Additional documentation
 
@@ -83,9 +85,9 @@ We are using autopep8 to enforce [PEP 8 -- Style Guide for Python](https://www.p
 
 - Declarations should form correct human-readable phrases when read aloud.
 
-- Methods without side-effects have **noun **names (originalSize()). Methods with side effects have **imperative verb** names (sort()). Non-mutating methods that return new values have **past participle** names (sorted()) or a **noun **if the operation is naturally described by it (union()) 
+- Methods without side-effects have **noun** names (originalSize()). Methods with side effects have **imperative verb** names (sort()). Non-mutating methods that return new values have **past participle** names (sorted()) or a **noun** if the operation is naturally described by it (union())
 
-- Protocols that describe *what* something is should read as **nouns ** (Collection). Protocols that describe a capability should be named using -able, -ible, or -ing (Equatable, ProgressReporting).
+- Protocols that describe *what* something is should read as **nouns**  (Collection). Protocols that describe a capability should be named using -able, -ible, or -ing (Equatable, ProgressReporting).
 
 - Avoid abbreviations
 
@@ -124,12 +126,12 @@ Every issue should have its branch following this format: "issue-##-short-descri
 - Reference issues and pull requests liberally after the first line
 - Consider starting the commit message with an applicable emoji (taken from the [Atom Contribution Guidelines](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)):
 
-    * :art: `:art:` when improving the format/structure of the code
-    * :racehorse: `:racehorse:` when improving performance
-    * :non-potable_water: `:non-potable_water:` when plugging memory leaks
-    * :memo: `:memo:` when writing docs
-    * :bug: `:bug:` when fixing a bug
-    * :fire: `:fire:` when removing code or files
-    * :white_check_mark: `:white_check_mark:` when adding tests
-    * :lock: `:lock:` when dealing with security
-    * :shirt: `:shirt:` when removing linter warnings
+  - :art: `:art:` when improving the format/structure of the code
+  - :racehorse: `:racehorse:` when improving performance
+  - :non-potable_water: `:non-potable_water:` when plugging memory leaks
+  - :memo: `:memo:` when writing docs
+  - :bug: `:bug:` when fixing a bug
+  - :fire: `:fire:` when removing code or files
+  - :white_check_mark: `:white_check_mark:` when adding tests
+  - :lock: `:lock:` when dealing with security
+  - :shirt: `:shirt:` when removing linter warnings
