@@ -26,8 +26,8 @@ jobs:
       - name: Change image profile
         uses: ./.github/actions/change-image-colour-profile
         with:
-          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
-          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif
+          source_images: '{"added": [{"path": "data/000002/32/000002-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}'
+          destination_images: data/000002/42/000002-32.600.2.tif
           profile: sRGB
 
       - name: Archive resized image
