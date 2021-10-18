@@ -63,4 +63,4 @@ The issue tracker is the most appropriate place for a contributor to ask for hel
 
 ## Decision-Making Process
 
-The benevolent dictatorship model does not need a formal conflict resolution process, since the project lead’s word is final. If the community chooses to question the wisdom of the actions of a committer, the project lead can review their decisions by checking the email archives, and either uphold or reverse them
+The benevolent dictatorship model does not need a formal conflict resolution process, since the project lead’s word is final. If the community chooses to question the wisdom of the actions of a committer, the project lead can review their decisions by checking the email archives, and either uphold or reverse them.
