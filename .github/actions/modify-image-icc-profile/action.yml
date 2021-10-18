@@ -1,5 +1,5 @@
-name: "Change image colour profile"
-description: "Change the colour profile of a image using Libvips"
+name: "Modify Image ICC profile"
+description: "Modify the ICC colour profile of a image using Libvips"
 author: "Yeray David Rodriguez"
 inputs:
   source_images:

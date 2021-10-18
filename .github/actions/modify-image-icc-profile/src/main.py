@@ -1,7 +1,7 @@
 import os
 import json
 
-from change_colour_profile.change_colour_profile import change_colour_profile
+from modify_icc_profile.modify_icc_profile import modify_icc_profile
 
 
 def parse_dvc_diff_ouput(dvc_diff):
@@ -29,7 +29,7 @@ def main():
     profile = os.environ["INPUT_PROFILE"]
     for index, image_path in enumerate(source_images_path):
         print("Changing colour profile of ", image_path, "to", profile)
-        change_colour_profile(image_path, resized_images_path[index], profile)
+        modify_icc_profile(image_path, resized_images_path[index], profile)
 
 
 if __name__ == "__main__":

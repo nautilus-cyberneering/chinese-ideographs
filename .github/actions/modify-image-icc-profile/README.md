@@ -1,4 +1,4 @@
-## Image ICC profile change GitHub action
+## Modify Image ICC Profile GitHub Action
 
 Build docker image:
 ```
