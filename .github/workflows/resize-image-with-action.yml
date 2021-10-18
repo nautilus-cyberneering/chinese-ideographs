@@ -1,0 +1,40 @@
+name: Resize image using GitHub Action
+
+on:
+  push:
+    branches: [ main, issue-* ]
+
+jobs:
+  resize:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+        run: dvc pull --remote azure      
+
+      - name: Generate Base image
+        uses: ./.github/actions/resize-image
+        with:
+          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
+          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif 
+          width: 320
+          height: 200
+
+      - name: Archive resized image
+        uses: actions/upload-artifact@v2
+        if: ${{ !env.ACT }}
+        with:
+          name: sample-resized-image
+          path: test-reduced.tif
+  
