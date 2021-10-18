@@ -45,7 +45,13 @@ When creating an improvement issue, please provide the following information:
 
 ### Committing code to an issue
 
-Before writing any code for the repository, please review the Python styleguides. Please, check that the new code will not compromise the quality, stability or security of the codebase. Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository. When creating the commit and the pull request, please refer also to the section Issues, Commits and Pull Requests. Whenever it is possible, new features should have Unit Tests to maintain (or increase) the code test coverage before adding it.
+Before writing any code for the repository please do the following:  
+
+- Review the applicable styleguides.
+- Check that the new code will not compromise the quality, stability or security of the codebase.
+- Any new code is added to the repository using Pull Requests that must be reviewed and approved by the community before being merged or rebased to the repository.
+- When creating the commit and the pull request, please refer also to the section Issues, Commits and Pull Requests.
+- Whenever it is possible, new features should have Unit Tests to maintain (or increase) the code test coverage before adding it.
 
 ### Additional documentation
 
