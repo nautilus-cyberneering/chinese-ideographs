@@ -2,12 +2,12 @@
 
 [![Gold Drawings Processing](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml/badge.svg)](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml)
 
-**Content**
+## Content
+
 - [Project Description](#project-description)
 - [Project Roadmap](#project-roadmap)
 - [Project Documentation](#project-documentation)
 ---
-
 
 ## Project Description
 
@@ -44,7 +44,7 @@ In the digital world, there exist different Chinese language learning sites in a
 This project is done in close collaboration with:
 
 Ethical Software Ltd. (Hong Kong)
-https://www.ethicalsoftware.hk/
+<https://www.ethicalsoftware.hk/>
 
 All images in this repository are images supplied by Ethical Software Ltd.
 This content by Ethical Software is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/). Please take some time and read their [Privacy Policy](https://www.ethicalsoftware.hk/?page_id=3).
@@ -57,12 +57,12 @@ Since we work with an agile approach, this roadmap will get updated as work prog
 ### Guide to the roadmap
 
 Given that our project is rather small at the moment, we have no separate repository for the roadmap.
-Every item on the roadmap is a card since we are currently working with a private second project board in this same repository. 
+Every item on the roadmap is a card since we are currently working with a private second project board in this same repository.
 You will see different cards that are called POC. POC standing for "proof of concept".
 
 ### Roadmap stages
 
-The roadmap is arranged on a project board to give you a better understanding of what parts are planned to be worked upon during each coming quater. Every feature is added to a particular project board column according to the quarter in which it is expected to be ready. 
+The roadmap is arranged on a project board to give you a better understanding of what parts are planned to be worked upon during each coming quater. Every feature is added to a particular project board column according to the quarter in which it is expected to be ready.
 
 The roadmap is subject to change, especially further out in time. You'll also find an Exploratory column for when no timeframe is available yet for specific features.
 
@@ -72,10 +72,8 @@ The given product roadmap does not represent a commitment, guarantee, obligation
 
 ## Project Documentation
 
-* [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)
-* [File Naming Convention](documentation/File_Naming_Convention.md)
-* [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
-* [Gold Images](documentation/Gold_Images.md)
-* [Governance](documentation/Governance.md)
-* [Running GitHub Actions Locally](documentation/Running_GitHub_Actions_Locally.md)
-
+- [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)
+- [File Naming Convention](documentation/File_Naming_Convention.md)
+- [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
+- [Gold Images](documentation/Gold_Images.md)
+- [Governance](documentation/Governance.md)
