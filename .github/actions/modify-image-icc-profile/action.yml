@@ -2,15 +2,15 @@ name: "Modify Image ICC profile"
 description: "Modify the ICC colour profile of a image using Libvips"
 author: "Yeray David Rodriguez"
 inputs:
-  source_images:
-    description: "Filename of the source images"
-    required: true
-  destination_images:
-    description: "Filename of the modified images"
+  state:
+    description: "JSON structure containing 'output-resize' attribute with files to modify"
     required: true
   profile:
     description: "ICC Profile for destination images (i.e. sRGB )"
     required: true
+outputs:
+  result:
+    description: "The modified input structure"
 runs:
   using: "docker"
   image: "Dockerfile"

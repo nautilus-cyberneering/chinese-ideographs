@@ -4,32 +4,44 @@ import json
 from modify_icc_profile.modify_icc_profile import modify_icc_profile
 
 
-def parse_dvc_diff_ouput(dvc_diff):
-    # It gets a plain string list with the added or modified files from the diff json.
-    # Input: {"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}
-    # Ouput: ['data/000001/32/000001-32.600.2.tif']
+def process_input_json(input_json):
+    # It gets a JSON object with information about the previous actions, and sets the input for this
+    # action with the value of the output of the "resize" action
+    # Input: {"added": [], "deleted": [], "modified": [], "renamed": [], "resize output": [...]}
+    # Output: {..., "icc profile modify input": [...]}
     # Code Review: parse_dvd_diff_ouput function should be moved to an independant action or dvc-diff action.
 
     # parse json
-    data = json.loads(dvc_diff)
-
-    # only interesting in added or modified files
-    filenames = data['added'] + data['modified']
+    data = json.loads(input_json)
 
     # parse path from all items
-    filenames = [path_object['path'] for path_object in filenames]
+    data['icc profile modify input'] = data['resize output'].copy()
 
-    return filenames
+    return data
+
+
+def get_output_filename(input_filename):
+    splittedFilename = os.path.splitext(input_filename)
+    return splittedFilename[0]+"-icc-profile-modified"+splittedFilename[1]
 
 
 def main():
-    source_images_path = parse_dvc_diff_ouput(
-        os.environ["INPUT_SOURCE_IMAGES"])
-    resized_images_path = os.environ["INPUT_DESTINATION_IMAGES"].split(',')
+
+    def process_file(filename):
+        output_filename = get_output_filename(filename)
+        print("Modifying image ICC profile of ", filename, "to", profile,
+              "as", output_filename)
+        modify_icc_profile(filename, output_filename, profile)
+        processed_files.append(output_filename)
+
+    processed_json = process_input_json(
+        os.environ["INPUT_STATE"])
     profile = os.environ["INPUT_PROFILE"]
-    for index, image_path in enumerate(source_images_path):
-        print("Changing colour profile of ", image_path, "to", profile)
-        modify_icc_profile(image_path, resized_images_path[index], profile)
+    processed_files = []
+    for image_path in processed_json['icc profile modify input']:
+        process_file(image_path)
+    processed_json['icc profile modify output'] = processed_files
+    print("::set-output name=result::", json.dumps(processed_json))
 
 
 if __name__ == "__main__":

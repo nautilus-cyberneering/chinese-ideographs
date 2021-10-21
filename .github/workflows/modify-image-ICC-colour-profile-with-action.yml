@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  change-colour-profile:
+  change-icc-colour-profile:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,11 +24,14 @@ jobs:
         run: dvc pull --remote azure      
 
       - name: Change image profile
-        uses: ./.github/actions/change-image-colour-profile
+        uses: ./.github/actions/modify-image-icc-profile
+        id: icc-modification
         with:
-          source_images: '{"added": [{"path": "data/000002/32/000002-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}'
-          destination_images: data/000002/42/000002-32.600.2.tif
+          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "resize output": ["${{github.workspace}}/data/000002/32/000002-32.600.2.tif"]}'
           profile: sRGB
+
+      - name: Check structure after ICC modification step
+        run: echo "${{ steps.icc-modification.outputs.result }}"
 
       - name: Archive resized image
         uses: actions/upload-artifact@v2
