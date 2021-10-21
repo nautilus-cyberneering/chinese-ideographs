@@ -49,7 +49,7 @@ def main():
     processed_files = []
     for image_path in processed_json['resize input']:
         process_file(image_path)
-    processed_json['output'] = processed_files
+    processed_json['resize output'] = processed_files
     print("::set-output name=result::", json.dumps(processed_json))
 
 
