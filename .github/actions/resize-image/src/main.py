@@ -10,8 +10,7 @@ def process_input_json(input_json):
     # It gets a JSON object with information about the files removed and added, and returns the same object
     # with a new property with a list of the files to be modified
     # Input: {"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": []}
-    # Output: {"added": ..., ..., "icc profile modify input": ["data/000001/32/000001-32.600.2.tif"]}
-    # Code Review: parse_dvd_diff_ouput function should be moved to an independant action or dvc-diff action.
+    # Output: {"added": ..., ..., "resize input": ["data/000001/32/000001-32.600.2.tif"]}
 
     # parse json
     data = json.loads(input_json)
