@@ -27,7 +27,7 @@ jobs:
         uses: ./.github/actions/modify-image-icc-profile
         id: icc-modification
         with:
-          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "resize output": ["${{github.workspace}}/data/000002/32/000002-32.600.2.tif"]}'
+          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "resize output": ["/github/workspace/data/000002/32/000002-32.600.2.tif"]}'
           profile: sRGB
 
       - name: Check structure after ICC modification step
