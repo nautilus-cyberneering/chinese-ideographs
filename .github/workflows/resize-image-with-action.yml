@@ -23,14 +23,11 @@ jobs:
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         run: dvc pull --remote azure      
 
-      - name: List data files
-        run: ls -R "${{ github.workspace }}/data"
-
       - name: Resize gold images
         uses: ./.github/actions/resize-image
         id: resize
         with:
-          DVC_DIFF: '{"added": [{"path": "${{ github.workspace }}/data/000002/32/000002-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          DVC_DIFF: '{"added": [{"path": "/github/workspace/data/000002/32/000002-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
           width: 320
           height: 200
 
