@@ -23,7 +23,10 @@ jobs:
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         run: dvc pull --remote azure      
 
-      - name: Generate Base image
+      - name: List data files
+        run: ls -R "${{ github.workspace }}/data"
+
+      - name: Resize gold images
         uses: ./.github/actions/resize-image
         id: resize
         with:
