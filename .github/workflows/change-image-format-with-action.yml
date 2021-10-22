@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  change-icc-colour-profile:
+  change-image-format:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,10 +24,10 @@ jobs:
         run: dvc pull --remote azure      
 
       - name: Change image format
-        uses: ./.github/actions/change-image-format
+        uses: ./.github/actions/change-image-file-format
         id: change-format
         with:
-          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "icc profile modify output": ["/github/workspace/data/000002/32/000002-32.600.2.tif"]}'
+          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "icc profile modify output": ["${{ github.workspace}}/data/000002/32/000002-32.600.2.tif"]}'
           format: jpg
 
       - name: Check structure after image file format change step

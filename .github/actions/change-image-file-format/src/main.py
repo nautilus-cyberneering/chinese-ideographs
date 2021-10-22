@@ -1,7 +1,7 @@
 import os
 import json
 
-from change_image_format.change_image_format import change_image_format
+from change_image_file_format.change_image_file_format import change_image_file_format
 
 
 def process_input_json(input_json):
@@ -27,10 +27,10 @@ def get_output_filename(input_filename, format):
 def main():
 
     def process_file(filename):
-        output_filename = get_output_filename(filename)
+        output_filename = get_output_filename(filename, format)
         print("Converting ", filename, "to", format,
               "as", output_filename)
-        change_image_format(filename, output_filename, format)
+        change_image_file_format(filename, output_filename)
         processed_files.append(output_filename)
 
     processed_json = process_input_json(
