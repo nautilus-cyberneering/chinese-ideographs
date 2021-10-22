@@ -23,13 +23,16 @@ jobs:
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         run: dvc pull --remote azure      
 
-      - name: Generate Base image
+      - name: Resize gold images
         uses: ./.github/actions/resize-image
+        id: resize
         with:
-          source_images: ${{ github.workspace }}/data/000002/32/000002-32.600.2.tif
-          destination_images: ${{ github.workspace }}/data/000002/42/000002-32.600.2.tif 
+          DVC_DIFF: '{"added": [{"path": "/github/workspace/data/000002/32/000002-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
           width: 320
           height: 200
+
+      - name: Check structure after resize step
+        run: echo "${{ steps.resize.outputs.result }}"
 
       - name: Archive resized image
         uses: actions/upload-artifact@v2
