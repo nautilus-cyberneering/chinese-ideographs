@@ -2,18 +2,18 @@ name: "Resize image"
 description: "Resize a image using Libvips, with Lanczos kernel algorithm"
 author: "Yeray David Rodriguez"
 inputs:
-  source_images:
-    description: "Filename of the source images"
-    required: true
-  destination_images:
-    description: "Filename of the resized images"
+  dvc_diff:
+    description: "Result of the DVC DIFF execution"
     required: true
   width:
-    description: "Maximun destination image width"
+    description: "Maximum destination image width"
     required: true
   height:
-    description: "Maximun destination image height"
+    description: "Maximum destination image height"
     required: true
+outputs:
+  result:
+    description: "The modified input structure"
 runs:
   using: "docker"
   image: "Dockerfile"

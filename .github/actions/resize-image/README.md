@@ -1,5 +1,7 @@
 ## Image resizing GitHub action
 
+Resizes all the images specified by the "added" and "modified" properties in the input JSON to fit the specified bounding rectangle. The results are stored in the same folder, using the "-resized" suffix
+
 Build docker image:
 ```
 docker build -t image-resize .
@@ -7,7 +9,7 @@ docker build -t image-resize .
 
 Run docker image:
 ```
-docker run -e INPUT_SOURCE_IMAGE="input.tif" -e INPUT_DESTINATION_IMAGE="output.tif" -e INPUT_WIDTH="2048" -e INPUT_HEIGHT="1024" image-resize  
+docker run -e INPUT_DVC_DIFF='{"added": [{"path": "${{ github.workspace }}/data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}' -e INPUT_WIDTH="2048" -e INPUT_HEIGHT="1024" image-resize  
 ```
 
 Run action with `act`:
