@@ -1,0 +1,34 @@
+name: Change image colour profile using GitHub Action
+
+on:
+  push:
+    branches: [ main, issue-* ]
+
+jobs:
+  change-icc-colour-profile:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+        run: dvc pull --remote azure      
+
+      - name: Change image profile
+        uses: ./.github/actions/modify-image-icc-profile
+        id: icc-modification
+        with:
+          state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "resize output": ["/github/workspace/data/000002/32/000002-32.600.2.tif"]}'
+          profile: sRGB
+
+      - name: Check structure after ICC modification step
+        run: echo "${{ steps.icc-modification.outputs.result }}"
