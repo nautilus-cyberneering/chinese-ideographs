@@ -32,11 +32,3 @@ jobs:
 
       - name: Check structure after ICC modification step
         run: echo "${{ steps.icc-modification.outputs.result }}"
-
-      - name: Archive resized image
-        uses: actions/upload-artifact@v2
-        if: ${{ !env.ACT }}
-        with:
-          name: sample-resized-image
-          path: test-reduced.tif
-  
