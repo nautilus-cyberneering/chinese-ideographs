@@ -3,7 +3,7 @@ description: "Modify the ICC colour profile of a image using Libvips"
 author: "Yeray David Rodriguez"
 inputs:
   state:
-    description: "JSON structure containing 'output-resize' attribute with files to modify"
+    description: "JSON structure containing 'resize output' attribute with files to modify"
     required: true
   profile:
     description: "ICC Profile for destination images (i.e. sRGB )"

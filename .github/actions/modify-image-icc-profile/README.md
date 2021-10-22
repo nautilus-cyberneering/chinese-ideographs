@@ -7,7 +7,7 @@ docker build -t change-profile .
 
 Run docker image:
 ```
-docker run -e INPUT_SOURCE_IMAGE="input.tif" -e INPUT_DESTINATION_IMAGE="output.tif" -e PROFILE="sRGB" change-profile
+docker run -e INPUT_STATE="{ ..., 'resize_output' = 'input.tif,...'}" -e INPUT_PROFILE="sRGB" change-   profile
 ```
 
 Run action with `act`:
