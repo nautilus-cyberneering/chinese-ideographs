@@ -9,7 +9,7 @@ docker build -t change-image-format .
 
 Run docker image:
 ```
-docker run -e STATE='{..., "icc profile modify output": "}/data/000001/32/000001-32.600.2.tif, ..."}' -e INPUT_FORMAT="jpg" change-image-format  
+docker run -e INPUT_STATE='{..., "icc profile modify output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' -e INPUT_FORMAT="jpg" change-image-format  
 ```
 
 Run action with `act`:

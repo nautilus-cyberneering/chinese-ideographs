@@ -1,0 +1,11 @@
+name: "Modify Image File Format"
+description: "Copy base files to its destination folder"
+author: "Yeray David Rodriguez"
+inputs:
+  state:
+    description: "JSON structure containing 'file format change output' attribute with files to copy"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
