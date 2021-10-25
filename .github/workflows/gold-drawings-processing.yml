@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  build:
+  process-gold-images:
     runs-on: ubuntu-latest
 
     steps:
@@ -74,10 +74,50 @@ jobs:
         if: ${{ env.ACT }}
         uses: ./.github/actions/validate-gold-image-folder
         with:
-          filepaths: '{"added": [{"path": "data/000001/42/000001-42.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+          filepaths: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
 
       - name: Validate Gold images folder (runner)
         if: ${{ !env.ACT }}
         uses: ./.github/actions/validate-gold-image-folder
         with:
           filepaths: ${{ steps.dvc-diff.outputs.diff }}
+
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+        run: dvc pull --remote azure
+
+      - name: Validate Gold images sizes (act)
+        if: ${{ env.ACT }}
+        uses: ./.github/actions/validate-image-size
+        with:
+          dvc_diff: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          min_size: 320
+          max_size: 340000
+
+      - name: Resize gold images (act)
+        uses: ./.github/actions/resize-image
+        id: resize
+        with:
+          dvc_diff: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          width: 320
+          height: 200
+
+      - name: Change image profile
+        uses: ./.github/actions/modify-image-icc-profile
+        id: icc-modification
+        with:
+          state: '${{ steps.resize.outputs.result }}'
+          profile: sRGB
+
+
+      - name: Change image format
+        uses: ./.github/actions/change-image-file-format
+        id: change-format
+        with:
+          state: '${{ steps.icc-modification.outputs.result }}'
+          format: jpg
