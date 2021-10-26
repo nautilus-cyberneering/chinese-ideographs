@@ -1,4 +1,4 @@
-name: Change image file format using GitHub Action
+name: Copy image to base images folder using GitHub Action
 
 on:
   push:

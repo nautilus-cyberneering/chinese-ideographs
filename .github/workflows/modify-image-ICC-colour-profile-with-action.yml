@@ -1,4 +1,4 @@
-name: Change image colour profile using GitHub Action
+name: Modify image ICC colour profile using GitHub Action
 
 on:
   push:
