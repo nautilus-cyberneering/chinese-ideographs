@@ -21,7 +21,7 @@ def process_input_json(input_json):
 
 def get_output_filename(input_filename):
     splittedFilename = os.path.split(input_filename)
-    return re.sub(r'/32$', '/42/', splittedFilename[0]) + splittedFilename[1].replace('-32.', '-42.')
+    return re.sub(r'/32$', '/42/', splittedFilename[0]) + splittedFilename[1].replace('-32.', '-42.').replace('-resized-icc-profile-modified', '')
 
 
 def create_output_folder(image_path):
