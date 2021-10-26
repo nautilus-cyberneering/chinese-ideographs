@@ -30,3 +30,5 @@ jobs:
           state: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "file format change output": ["data/000002/32/000002-32.600.2.tif"]}'
           format: jpg
 
+      - name: Check structure after image copy step
+        run: echo "${{ steps.copy-to-base.outputs.result }}"

@@ -42,6 +42,8 @@ def main():
     processed_files = []
     for image_path in processed_json['move to base folder input']:
         copy_file(image_path)
+    processed_json['move to base folder output'] = processed_files
+    print("::set-output name=result::", json.dumps(processed_json))
 
 
 if __name__ == "__main__":
