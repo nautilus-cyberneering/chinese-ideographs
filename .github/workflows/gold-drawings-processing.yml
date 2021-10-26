@@ -114,10 +114,17 @@ jobs:
           state: '${{ steps.resize.outputs.result }}'
           profile: sRGB
 
-
       - name: Change image format
         uses: ./.github/actions/change-image-file-format
         id: change-format
         with:
           state: '${{ steps.icc-modification.outputs.result }}'
           format: jpg
+
+      - name: Move to final folder
+        uses: ./.github/actions/copy-to-base-folder
+        with:
+          state: '${{ steps.change-format.outputs.result }}'
+
+      - name: List output files
+        run: ls -la data/000001/42/ 
