@@ -10,10 +10,10 @@ git pull
 for file in ${FILES//,/ }
 do
    echo "Commiting file: '$GITHUB_WORKSPACE/$file'"
-   git add "$file"
+   git add "$GITHUB_WORKSPACE/$file"
 done
 
-if [[ $TEST == 'TRUE']] 
+if [[ $TEST == 'TRUE' ]] 
 then
    echo "git commit -m '$MESSAGE'"
    echo "git push"
