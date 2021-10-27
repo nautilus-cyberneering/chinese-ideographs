@@ -70,15 +70,10 @@ NAUTILUS confirms that any Artwork Contribution we received by you will be
 made available under the terms of the Creative Commons Attribution Share Alike 4.0 International (“CC-BY-SA-4.0) (https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 However NAUTILUS, or ETHICAL will be free to add additional licences to any Artwork Contributions, such as CC-BY or CC0.
 
-Any commit that is older than five years automatically is granted the additional licences: 
-- For code, MIT-0. 
-- For everything else, CC0”.
-
 5. Artificial acceleration of the Public Domain concept
 Any commit that is older than five years automatically is granted the additional licences: 
 - For code, MIT No Attribution (MIT-0). 
 - For everything else, Creative Commons 1.0 Universal (CC0).
-
 
 6. Notice and Inclusion: 
 You agree to notify us if you become aware of any circumstance which would make any of 
@@ -88,6 +83,8 @@ The Project is under no obligation to accept and include every Contribution.
 7. Effective Date: 
 The rights that you grant to us under these terms are effective on the date you first submitted the 
 Contribution to us, even if your submission took place before the date you sign these terms. 
+
+8. If this contribution is under an employment contract, please specify the relevant employer, otherwise please write N/A."
 
 
 Your signature: 
