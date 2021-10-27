@@ -1,4 +1,4 @@
-name: "Modify Image File Format"
+name: "Copy to Base Images Folder"
 description: "Copy base files to its destination folder"
 author: "Yeray David Rodriguez"
 inputs:
