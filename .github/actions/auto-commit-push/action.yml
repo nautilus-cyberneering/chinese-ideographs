@@ -1,0 +1,12 @@
+name: "Auto commmit and push"
+description: "Add files to a new commit and pushes it"
+author: "Yeray David Rodriguez"
+inputs:
+  FILENAMES:
+    description: "A comma separated list of files, enclosed in brackets"
+  MESSAGE:
+    description: "Commit message"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
