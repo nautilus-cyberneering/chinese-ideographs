@@ -19,3 +19,4 @@ jobs:
         env:
           FILENAMES: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "move to base folder output": ["data/test/landscape.jpg"]}'
           MESSAGE: 'This is a test'
+          TEST: 'TRUE'

@@ -9,9 +9,15 @@ git pull
 
 for file in ${FILES//,/ }
 do
-   echo "Commiting file: '$file'"
+   echo "Commiting file: '$GITHUB_WORKSPACE/$file'"
    git add "$file"
 done
 
-git commit -m '$MESSAGE'
-git push
+if [[ $TEST == 'TRUE']] 
+then
+   echo "git commit -m '$MESSAGE'"
+   echo "git push"
+else
+   git commit -m '$MESSAGE'
+   git push
+fi
