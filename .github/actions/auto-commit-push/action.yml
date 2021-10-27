@@ -6,6 +6,8 @@ inputs:
     description: "A comma separated list of files, enclosed in brackets"
   MESSAGE:
     description: "Commit message"
+  BRANCH:
+    description: "Branch to apply the commmit to"
 runs:
   using: "docker"
   image: "Dockerfile"
