@@ -121,10 +121,16 @@ jobs:
           state: '${{ steps.icc-modification.outputs.result }}'
           format: jpg
 
-      - name: Move to final folder
+      - name: Copy to final folder
         uses: ./.github/actions/copy-to-base-folder
+        id: copy-base-folder
         with:
           state: '${{ steps.change-format.outputs.result }}'
 
-      - name: List output files
-        run: ls -la data/000001/42/ 
+      - name: Commit file
+        uses: ./.github/actions/auto-commit-push
+        id: auto-commit-push
+        env:
+          FILENAMES: '${{ steps.copy-base-folder.outputs.result }}'
+          MESSAGE: 'Update processed base images'
+          TEST: 'TRUE'
