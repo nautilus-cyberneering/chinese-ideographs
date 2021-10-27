@@ -1,0 +1,22 @@
+name: Commit files and push commit using GitHub Action
+
+on:
+  push:
+    branches: [ main, issue-* ]
+
+jobs:
+  auto-commit-push:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Commit files
+        uses: ./.github/actions/auto-commit-push
+        env:
+          FILENAMES: '{"added": [], "modified": [], "renamed": [], "not in cache": [], "resize input": [], "move to base folder output": ["data/000001/32/000001-32.600.2.tif.dvc", "data/000002/32/000002-32.600.2.tif.dvc"]}'
+          MESSAGE: 'This is a test commit'
+          TEST: 'TRUE'
