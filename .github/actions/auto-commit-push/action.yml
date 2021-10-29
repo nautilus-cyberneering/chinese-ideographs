@@ -2,11 +2,11 @@ name: "Auto commmit and push"
 description: "Add files to a new commit and pushes it"
 author: "Yeray David Rodriguez"
 inputs:
-  FILENAMES:
+  job_state:
     description: "A comma separated list of files, enclosed in brackets"
-  MESSAGE:
+  message:
     description: "Commit message"
-  TEST:
+  dry_run:
     description: "If TRUE, actual commits and pushes are replaced by echos"
 runs:
   using: "docker"

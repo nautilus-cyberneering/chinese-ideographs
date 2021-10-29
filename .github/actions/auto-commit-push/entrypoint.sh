@@ -13,7 +13,7 @@ do
    git add "$GITHUB_WORKSPACE/$file"
 done
 
-if [[ $TEST == 'TRUE' ]] 
+if [[ $DRY_RUN == 'TRUE' ]] 
 then
    echo "git commit -m '$MESSAGE'"
    echo "git push"
