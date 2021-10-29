@@ -2,7 +2,7 @@ name: "Modify Image File Format"
 description: "Modify the file format of a image using Libvips"
 author: "Yeray David Rodriguez"
 inputs:
-  state:
+  job_state:
     description: "JSON structure containing 'icc profile modify output' attribute with files to modify"
     required: true
   format:
