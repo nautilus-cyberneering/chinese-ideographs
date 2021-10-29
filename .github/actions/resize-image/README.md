@@ -9,7 +9,7 @@ docker build -t image-resize .
 
 Run docker image:
 ```
-docker run -e INPUT_DVC_DIFF='{"added": [{"path": "${{ github.workspace }}/data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}' -e INPUT_WIDTH="2048" -e INPUT_HEIGHT="1024" image-resize  
+docker run -e INPUT_JOB_STATE='{"added": [{"path": "${{ github.workspace }}/data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}' -e INPUT_WIDTH="2048" -e INPUT_HEIGHT="1024" image-resize  
 ```
 
 Run action with `act`:
