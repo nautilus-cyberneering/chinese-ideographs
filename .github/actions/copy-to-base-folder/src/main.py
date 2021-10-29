@@ -38,7 +38,7 @@ def main():
         processed_files.append(output_filename)
 
     processed_json = process_input_json(
-        os.environ["INPUT_STATE"])
+        os.environ["INPUT_JOB_STATE"])
     processed_files = []
     for image_path in processed_json['move to base folder input']:
         copy_file(image_path)
