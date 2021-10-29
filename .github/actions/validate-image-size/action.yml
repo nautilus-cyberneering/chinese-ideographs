@@ -2,7 +2,7 @@ name: "Validate image size"
 description: "Validate image size (width x height) using a minimum and maximum dimension value"
 author: "Yeray David Rodriguez"
 inputs:
-  dvc_diff:
+  job_state:
     description: "JSON structure with the result of a DVC diff operation"
     required: true
   min_size:

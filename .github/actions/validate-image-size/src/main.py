@@ -22,7 +22,7 @@ def process_input_json(input_json):
 
 def main():
     processed_json = process_input_json(
-        os.environ["INPUT_DVC_DIFF"])
+        os.environ["INPUT_JOB_STATE"])
     min_size = int(os.environ["INPUT_MIN_SIZE"])
     max_size = int(os.environ["INPUT_MAX_SIZE"])
     for image_path in processed_json['file size validation input']:
