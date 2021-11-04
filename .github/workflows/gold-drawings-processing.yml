@@ -103,7 +103,7 @@ jobs:
         uses: ./.github/actions/resize-image
         id: resize
         with:
-          dvc_diff: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          job_state: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
           width: 320
           height: 200
 
@@ -111,26 +111,26 @@ jobs:
         uses: ./.github/actions/modify-image-icc-profile
         id: icc-modification
         with:
-          state: '${{ steps.resize.outputs.result }}'
+          job_state: '${{ steps.resize.outputs.result }}'
           profile: sRGB
 
       - name: Change image format
         uses: ./.github/actions/change-image-file-format
         id: change-format
         with:
-          state: '${{ steps.icc-modification.outputs.result }}'
+          job_state: '${{ steps.icc-modification.outputs.result }}'
           format: jpg
 
       - name: Copy to final folder
         uses: ./.github/actions/copy-to-base-folder
         id: copy-base-folder
         with:
-          state: '${{ steps.change-format.outputs.result }}'
+          job_state: '${{ steps.change-format.outputs.result }}'
 
       - name: Commit file
         uses: ./.github/actions/auto-commit-push
         id: auto-commit-push
         env:
-          FILENAMES: '${{ steps.copy-base-folder.outputs.result }}'
-          MESSAGE: 'Update processed base images'
-          TEST: 'TRUE'
+          filenames: '${{ steps.copy-base-folder.outputs.result }}'
+          message: 'Update processed base images'
+          test: 'TRUE'
