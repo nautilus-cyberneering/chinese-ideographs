@@ -9,7 +9,7 @@ docker build -t auto-commit-push .
 
 Run docker image:
 ```
-docker run -e INPUT_FILENAMES='{..., "move to base folder output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' -e INPUT_MESSAGE="commit message" auto-commit-push  
+docker run -e INPUT_JOB_STATE='{..., "move to base folder output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' -e INPUT_MESSAGE="commit message" auto-commit-push  
 ```
 
 Run action with `act`:
