@@ -17,6 +17,15 @@ jobs:
       #- name: Dump context
       #  uses: crazy-max/ghaction-dump-context@v1
 
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+        run: dvc pull --remote azure
+
       - name: Debug env vars
         shell: bash
         run: |
@@ -81,15 +90,6 @@ jobs:
         uses: ./.github/actions/validate-gold-image-folder
         with:
           filepaths: ${{ steps.dvc-diff.outputs.diff }}
-
-      - name: Setup DVC
-        uses: iterative/setup-dvc@v1
-
-      - name: Pull images from remote storage
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        run: dvc pull --remote azure
 
       - name: Validate Gold images sizes (act)
         if: ${{ env.ACT }}
