@@ -130,7 +130,5 @@ jobs:
       - name: Commit file
         uses: ./.github/actions/auto-commit-push
         id: auto-commit-push
-        env:
-          filenames: '${{ steps.copy-base-folder.outputs.result }}'
-          message: 'Update processed base images'
-          test: 'TRUE'
+        with:
+          job_state: '${{ steps.copy-base-folder.outputs.result }}'

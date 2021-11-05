@@ -9,12 +9,12 @@ docker build -t auto-commit-push .
 
 Run docker image:
 ```
-docker run -e INPUT_JOB_STATE='{..., "move to base folder output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' -e INPUT_MESSAGE="commit message" auto-commit-push  
+docker run -e INPUT_JOB_STATE='{..., "move to base folder output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' 
 ```
 
 Run action with `act`:
 ```
-docker image rm act-github-actions-change-image-file-format && act -j change-image-format
+docker image rm act-github-actions-auto-commit-push && act -j auto-commit-push
 ```
 You need to remove the previous version of the docker images created by `act`.
 
