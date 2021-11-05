@@ -114,13 +114,6 @@ jobs:
           job_state: '${{ steps.resize.outputs.result }}'
           profile: sRGB
 
-      - name: Change image format
-        uses: ./.github/actions/change-image-file-format
-        id: change-format
-        with:
-          job_state: '${{ steps.icc-modification.outputs.result }}'
-          format: jpg
-
       - name: Copy to final folder
         uses: ./.github/actions/copy-to-base-folder
         id: copy-base-folder

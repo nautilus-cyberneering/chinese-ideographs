@@ -3,7 +3,7 @@ description: "Copy base files to its destination folder"
 author: "Yeray David Rodriguez"
 inputs:
   job_state:
-    description: "JSON structure containing 'file format change output' attribute with files to copy"
+    description: "JSON structure containing 'icc profile modify output' attribute with files to copy"
     required: true
 outputs:
   result:
