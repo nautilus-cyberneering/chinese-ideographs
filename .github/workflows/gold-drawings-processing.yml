@@ -118,7 +118,7 @@ jobs:
         uses: ./.github/actions/copy-to-base-folder
         id: copy-base-folder
         with:
-          job_state: '${{ steps.change-format.outputs.result }}'
+          job_state: '${{ steps.icc-modification.outputs.result }}'
 
       - name: Commit file
         uses: ./.github/actions/auto-commit-push
