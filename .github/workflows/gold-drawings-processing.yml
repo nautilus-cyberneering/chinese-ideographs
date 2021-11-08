@@ -95,10 +95,4 @@ jobs:
 
       - name: Debug copy-base-folder ouput
         run: |
-          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"          
-
-      - name: Commit file
-        uses: ./.github/actions/auto-commit-push
-        id: auto-commit-push
-        with:
-          job_state: ${{ steps.copy-base-folder.outputs.result }}
+          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
