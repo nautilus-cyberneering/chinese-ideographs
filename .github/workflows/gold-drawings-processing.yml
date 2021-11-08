@@ -13,10 +13,6 @@ jobs:
         with:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
 
-      # debug info to run locally with 'act'. It shows secrets!!
-      #- name: Dump context
-      #  uses: crazy-max/ghaction-dump-context@v1
-
       - name: Setup DVC
         uses: iterative/setup-dvc@v1
 
@@ -30,14 +26,7 @@ jobs:
         shell: bash
         run: ./.github/scripts/debug-env-vars.sh
 
-      - name: Set env (local)
-        if: ${{ env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
-        run: |
-          echo "PREVIOUS_REF=HEAD" >> $GITHUB_ENV
-          echo "CURRENT_REF=" >> $GITHUB_ENV
-
-      - name: Set env (runner)
-        if: ${{ !env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
+      - name: Set env
         run: |
           echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
           echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
@@ -58,45 +47,30 @@ jobs:
         run: |
           echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
 
-      - name: Validate filenames (act)
-        if: ${{ env.ACT }}
-        uses: ./.github/actions/validate-filenames
-        with:
-          filenames: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
-
-      - name: Validate filenames (runner)
-        if: ${{ !env.ACT }}
+      - name: Validate filenames
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}
 
-      - name: Validate Gold images folder (act)
-        if: ${{ env.ACT }}
-        uses: ./.github/actions/validate-gold-image-folder
-        with:
-          filepaths: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
-
-      - name: Validate Gold images folder (runner)
-        if: ${{ !env.ACT }}
+      - name: Validate Gold images folder
         uses: ./.github/actions/validate-gold-image-folder
         with:
           filepaths: ${{ steps.dvc-diff.outputs.diff }}
 
-      - name: Validate Gold images sizes (act)
-        if: ${{ env.ACT }}
+      - name: Validate Gold images sizes
         uses: ./.github/actions/validate-image-size
         with:
-          dvc_diff: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          job_state: ${{ steps.dvc-diff.outputs.diff }}
           min_size: 320
-          max_size: 340000
+          max_size: 340000          
 
-      - name: Resize gold images (act)
+      - name: Resize gold images
         uses: ./.github/actions/resize-image
         id: resize
         with:
-          job_state: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          job_state: ${{ steps.dvc-diff.outputs.diff }}
           width: 320
-          height: 200
+          height: 200          
 
       - name: Debug resize ouput
         run: |
@@ -106,7 +80,7 @@ jobs:
         uses: ./.github/actions/modify-image-icc-profile
         id: icc-modification
         with:
-          job_state: '${{ steps.resize.outputs.result }}'
+          job_state: ${{ steps.resize.outputs.result }}
           profile: sRGB
 
       - name: Debug icc-modification ouput
@@ -127,4 +101,4 @@ jobs:
         uses: ./.github/actions/auto-commit-push
         id: auto-commit-push
         with:
-          job_state: '${{ steps.copy-base-folder.outputs.result }}'
+          job_state: ${{ steps.copy-base-folder.outputs.result }}
