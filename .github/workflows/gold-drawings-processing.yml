@@ -98,6 +98,10 @@ jobs:
           width: 320
           height: 200
 
+      - name: Debug resize ouput
+        run: |
+          echo "Result: ${{ steps.resize.outputs.result }}"          
+
       - name: Change image profile
         uses: ./.github/actions/modify-image-icc-profile
         id: icc-modification
@@ -105,11 +109,19 @@ jobs:
           job_state: '${{ steps.resize.outputs.result }}'
           profile: sRGB
 
+      - name: Debug icc-modification ouput
+        run: |
+          echo "Result: ${{ steps.icc-modification.outputs.result }}"          
+
       - name: Copy to final folder
         uses: ./.github/actions/copy-to-base-folder
         id: copy-base-folder
         with:
           job_state: '${{ steps.icc-modification.outputs.result }}'
+
+      - name: Debug copy-base-folder ouput
+        run: |
+          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"          
 
       - name: Commit file
         uses: ./.github/actions/auto-commit-push
