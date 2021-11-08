@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  validate-size:
+  test-action-validate-image-size:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -26,7 +26,7 @@ jobs:
       - name: Validate Base image
         uses: ./.github/actions/validate-image-size
         with:
-          DVC_DIFF: '{"added": [{"path": "data/000002/32/000002-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
+          job_state: '{"added": [{"path": "data/000002/32/000002-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}'
           min_size: 320
           max_size: 340000
 

@@ -9,7 +9,7 @@ docker build -t image-size-validate .
 
 Run docker image:
 ```
-docker run -e DVC_DIFF='{"added": [{"path": "${{ github.workspace }}/data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}' -e INPUT_MIN_SIZE="1024" -e INPUT_MAX_SIZE="4096" image-size-validate  
+docker run -e JOB_STATE='{"added": [{"path": "${{ github.workspace }}/data/000001/32/000001-32.600.2.tif"}], "modified": [], "renamed": [], "not in cache": []}' -e INPUT_MIN_SIZE="1024" -e INPUT_MAX_SIZE="4096" image-size-validate  
 ```
 
 Run action with `act`:

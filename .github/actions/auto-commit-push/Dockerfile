@@ -1,10 +1,20 @@
-FROM python:latest
+FROM python:3.9 AS builder
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& apt-get install -y libvips-dev 
 
-RUN apt update
-RUN apt install -y git
+RUN pip install pyvips
+ADD ./src /app
+WORKDIR /app
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
+FROM builder AS linting
+RUN pip install --upgrade autopep8
+# Fail when autopep8 finds errors:
+# https://es.stackoverflow.com/questions/487904/make-autopep8-fail-in-a-docker-build
+RUN autopep8 -rd /app && if [ ! -z "$(autopep8 -rd /app)" ]; then exit 1; fi
 
-# Executes `entrypoint.sh` when the Docker container starts up 
-ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
+FROM builder
+COPY --from=builder /app /app
+RUN rm -rf /app/test
+ENV PYTHONPATH /app
+CMD ["python", "/app/main.py"]

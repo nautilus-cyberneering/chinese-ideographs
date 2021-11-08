@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  build:
+  process-gold-images:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,31 +13,20 @@ jobs:
         with:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
 
-      # debug info to run locally with 'act'. It shows secrets!!
-      #- name: Dump context
-      #  uses: crazy-max/ghaction-dump-context@v1
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull images from remote storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+        run: dvc pull --remote azure
 
       - name: Debug env vars
         shell: bash
-        run: |
-          # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
-          echo -e "GITHUB_WORKSPACE: $GITHUB_WORKSPACE\n"
-          echo -e "GITHUB_SHA: $GITHUB_SHA\n"
-          echo -e "GITHUB_REF: $GITHUB_REF\n"
-          echo -e "GITHUB_HEAD_REF: $GITHUB_HEAD_REF\n"
-          echo -e "GITHUB_BASE_REF: $GITHUB_BASE_REF\n"
-          echo -e "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME\n"
-          echo -e "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH\n" 
-          #cat $GITHUB_EVENT_PATH
+        run: ./.github/scripts/debug-env-vars.sh
 
-      - name: Set env (local)
-        if: ${{ env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
-        run: |
-          echo "PREVIOUS_REF=HEAD" >> $GITHUB_ENV
-          echo "CURRENT_REF=" >> $GITHUB_ENV
-
-      - name: Set env (runner)
-        if: ${{ !env.ACT }} # GITHUB_HEAD_REF & GITHUB_BASE_REF are empty using act
+      - name: Set env
         run: |
           echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
           echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
@@ -58,26 +47,58 @@ jobs:
         run: |
           echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
 
-      - name: Validate filenames (act)
-        if: ${{ env.ACT }}
-        uses: ./.github/actions/validate-filenames
-        with:
-          filenames: '{"added": [{"path": "data/000001/32/000001-32.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
-
-      - name: Validate filenames (runner)
-        if: ${{ !env.ACT }}
+      - name: Validate filenames
         uses: ./.github/actions/validate-filenames
         with:
           filenames: ${{ steps.dvc-diff.outputs.diff }}
 
-      - name: Validate Gold images folder (act)
-        if: ${{ env.ACT }}
-        uses: ./.github/actions/validate-gold-image-folder
-        with:
-          filepaths: '{"added": [{"path": "data/000001/42/000001-42.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
-
-      - name: Validate Gold images folder (runner)
-        if: ${{ !env.ACT }}
+      - name: Validate Gold images folder
         uses: ./.github/actions/validate-gold-image-folder
         with:
           filepaths: ${{ steps.dvc-diff.outputs.diff }}
+
+      - name: Validate Gold images sizes
+        uses: ./.github/actions/validate-image-size
+        with:
+          job_state: ${{ steps.dvc-diff.outputs.diff }}
+          min_size: 320
+          max_size: 340000          
+
+      - name: Resize gold images
+        uses: ./.github/actions/resize-image
+        id: resize
+        with:
+          job_state: ${{ steps.dvc-diff.outputs.diff }}
+          width: 320
+          height: 200          
+
+      - name: Debug resize ouput
+        run: |
+          echo "Result: ${{ steps.resize.outputs.result }}"          
+
+      - name: Change image profile
+        uses: ./.github/actions/modify-image-icc-profile
+        id: icc-modification
+        with:
+          job_state: ${{ steps.resize.outputs.result }}
+          profile: sRGB
+
+      - name: Debug icc-modification ouput
+        run: |
+          echo "Result: ${{ steps.icc-modification.outputs.result }}"          
+
+      - name: Copy to final folder
+        uses: ./.github/actions/copy-to-base-folder
+        id: copy-base-folder
+        with:
+          job_state: '${{ steps.icc-modification.outputs.result }}'
+
+      - name: Debug copy-base-folder ouput
+        run: |
+          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"          
+
+      - name: Commit file
+        uses: ./.github/actions/auto-commit-push
+        id: auto-commit-push
+        with:
+          job_state: ${{ steps.copy-base-folder.outputs.result }}

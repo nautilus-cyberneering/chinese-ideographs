@@ -2,7 +2,7 @@ name: "Resize image"
 description: "Resize a image using Libvips, with Lanczos kernel algorithm"
 author: "Yeray David Rodriguez"
 inputs:
-  dvc_diff:
+  job_state:
     description: "Result of the DVC DIFF execution"
     required: true
   width:

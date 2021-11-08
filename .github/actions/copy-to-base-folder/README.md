@@ -9,7 +9,7 @@ docker build -t copy-base-image .
 
 Run docker image:
 ```
-docker run -e INPUT_STATE='{..., "file format change output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' copy-base-image  
+docker run -e INPUT_JOB_STATE='{..., "icc profile modify output": ["/data/000001/32/000001-32.600.2.tif", "..."]}' copy-base-image  
 ```
 
 Run action with `act`:

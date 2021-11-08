@@ -2,9 +2,12 @@ name: "Copy to Base Images Folder"
 description: "Copy base files to its destination folder"
 author: "Yeray David Rodriguez"
 inputs:
-  state:
-    description: "JSON structure containing 'file format change output' attribute with files to copy"
+  job_state:
+    description: "JSON structure containing 'icc profile modify output' attribute with files to copy"
     required: true
+outputs:
+  result:
+    description: "The modified input structure"
 runs:
   using: "docker"
   image: "Dockerfile"

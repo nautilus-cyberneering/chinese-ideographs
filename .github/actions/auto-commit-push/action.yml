@@ -1,13 +1,9 @@
 name: "Auto commmit and push"
-description: "Add files to a new commit and pushes it"
+description: "Add files to a new commit and pushes it. Current implementation is dummy, only list files to commit."
 author: "Yeray David Rodriguez"
 inputs:
-  FILENAMES:
+  job_state:
     description: "A comma separated list of files, enclosed in brackets"
-  MESSAGE:
-    description: "Commit message"
-  TEST:
-    description: "If TRUE, actual commits and pushes are replaced by echos"
 runs:
   using: "docker"
   image: "Dockerfile"

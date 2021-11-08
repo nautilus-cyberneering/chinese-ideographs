@@ -2,7 +2,7 @@ name: "Modify Image ICC profile"
 description: "Modify the ICC colour profile of a image using Libvips"
 author: "Yeray David Rodriguez"
 inputs:
-  state:
+  job_state:
     description: "JSON structure containing 'resize output' attribute with files to modify"
     required: true
   profile:

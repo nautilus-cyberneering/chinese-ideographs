@@ -43,7 +43,7 @@ def main():
         processed_files.append(output_filename)
 
     processed_json = process_input_json(
-        os.environ["INPUT_DVC_DIFF"])
+        os.environ["INPUT_JOB_STATE"])
     output_size = parse_size_parametres()
     processed_files = []
     for image_path in processed_json['resize input']:
