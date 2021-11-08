@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  change-icc-colour-profile:
+  test-action-modify-image-icc-colour-profile:
     runs-on: ubuntu-latest
     defaults:
       run:

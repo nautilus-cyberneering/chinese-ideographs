@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  auto-commit-push:
+  test-action-auto-commit-push:
     runs-on: ubuntu-latest
     defaults:
       run:

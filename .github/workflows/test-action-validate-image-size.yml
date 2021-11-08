@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  validate-size:
+  test-action-validate-image-size:
     runs-on: ubuntu-latest
     defaults:
       run:

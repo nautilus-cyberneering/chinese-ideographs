@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  change-image-format:
+  test-action-change-image-format:
     runs-on: ubuntu-latest
     defaults:
       run:

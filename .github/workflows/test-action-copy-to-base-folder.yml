@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  copy-image-to-base-folder:
+  test-action-copy-to-base-folder:
     runs-on: ubuntu-latest
     defaults:
       run:
