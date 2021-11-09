@@ -163,6 +163,9 @@ def dvc_add_and_push_image(repo_dir, repo_base_image):
     cmd = f'cd {repo_dir} && dvc add {repo_base_image}'
     print(cmd)
     os.system(cmd)
+    # TODO: maybe we should push after commiting. If the git commit fail we will have those images in the remote storage but not in the git repo.
+    # We can also execute dvc garbage collectro in a different workflow, to clean the dvc storage periodically.
+    # Discussion: https://github.com/Nautilus-Cyberneering/chinese-ideographs/discussions/101
     os.system('dvc push')
 
 
