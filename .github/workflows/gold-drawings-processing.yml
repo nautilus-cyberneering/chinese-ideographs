@@ -96,3 +96,13 @@ jobs:
       - name: Debug copy-base-folder ouput
         run: |
           echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
+
+      - name: Auto-commit added or modified images
+        id: auto-commit
+        uses: ./.github/actions/auto-commit-images
+        with:
+          repository: "${{ github.repository }}"
+          repo_dir: "${{ github.workspace }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          branch: "${{ github.head_ref }}"
+
