@@ -166,12 +166,12 @@ def dvc_add_and_push_image(repo_dir, repo_base_image):
     os.system('dvc push')
 
 
-def dvc_delete_and_push_image(repo_dir, repo_base_image):
-    ''' Delete Base image from dvc and push to remote storage'''
+def dvc_delete_local_and_remote_image(repo_dir, repo_base_image):
+    ''' Delete Base image from dvc and from remote storage'''
     cmd = f'cd {repo_dir} && dvc remove {repo_base_image}'
     print(cmd)
     os.system(cmd)
-    os.system('dvc push')
+    os.system('dvc gc --cloud')
 
 
 def commit_added_base_images(local_repo, repository, repo_dir, repo_token, branch):
@@ -206,6 +206,23 @@ def commit_modified_base_images(local_repo, repository, repo_dir, repo_token, br
     return commits_for_modified_images
 
 
+def commit_deleted_base_images(local_repo, repository, repo_dir, repo_token, branch):
+    # Deleted Base images
+    deleted_repo_base_image_paths = get_deleted_base_images(local_repo)
+    print("Deleted Base images: ", deleted_repo_base_image_paths)
+
+    # dvc remove
+    for repo_base_image in deleted_repo_base_image_paths:
+        # We have to use the dvc image pointer (.dvc) not the tiff image
+        dvc_delete_local_and_remote_image(repo_dir, repo_base_image + '.dvc')
+
+    # git commit Base image: dvc pointer, and .gitignore
+    commits_for_deleted_images = add_or_modify_base_images_in_git(
+        repository, repo_dir, repo_token, deleted_repo_base_image_paths, branch, 'Delete Base image')
+
+    return commits_for_deleted_images
+
+
 def auto_commit(repository, repo_dir, repo_token, branch):
     local_repo = Repo(repo_dir)
 
@@ -217,4 +234,7 @@ def auto_commit(repository, repo_dir, repo_token, branch):
     commits_for_modified_images = commit_modified_base_images(
         local_repo, repository, repo_dir, repo_token, branch)
 
-    return commits_for_added_images + commits_for_modified_images
+    commits_for_deleted_images = commit_deleted_base_images(
+        local_repo, repository, repo_dir, repo_token, branch)
+
+    return commits_for_added_images + commits_for_modified_images + commits_for_deleted_images
