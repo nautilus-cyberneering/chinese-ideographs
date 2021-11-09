@@ -79,7 +79,7 @@ def get_deleted_base_images(repo):
     return filter_base_images(filter_media_library_files(all_deleted_files))
 
 
-def add_or_modify_base_images_in_git(repository, repo_dir, repo_token, repo_base_image_paths, branch_ref):
+def add_or_modify_base_images_in_git(repository, repo_dir, repo_token, repo_base_image_paths, branch_ref, commit_prefix):
     gh = github.Github(repo_token)
 
     remote_repo = gh.get_repo(repository)
@@ -104,7 +104,7 @@ def add_or_modify_base_images_in_git(repository, repo_dir, repo_token, repo_base
 
         # Commit message
         base_image_filename = os.path.basename(repo_base_image_path)
-        commit_message = f'Add Base image {base_image_filename}'
+        commit_message = f'{commit_prefix} {base_image_filename}'
 
         branch = os.path.basename(branch_ref)
 
@@ -185,7 +185,7 @@ def commit_added_base_images(local_repo, repository, repo_dir, repo_token, branc
 
     # git commit Base image: dvc pointer, and .gitignore
     commits_for_added_images = add_or_modify_base_images_in_git(
-        repository, repo_dir, repo_token, added_repo_base_image_paths, branch)
+        repository, repo_dir, repo_token, added_repo_base_image_paths, branch, 'Add Base image')
 
     return commits_for_added_images
 
@@ -201,7 +201,7 @@ def commit_modified_base_images(local_repo, repository, repo_dir, repo_token, br
 
     # git commit Base image: dvc pointer, and .gitignore
     commits_for_modified_images = add_or_modify_base_images_in_git(
-        repository, repo_dir, repo_token, modified_repo_base_image_paths, branch)
+        repository, repo_dir, repo_token, modified_repo_base_image_paths, branch, 'Update Base image')
 
     return commits_for_modified_images
 
