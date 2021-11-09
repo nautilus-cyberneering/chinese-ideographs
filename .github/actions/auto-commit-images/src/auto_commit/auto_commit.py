@@ -176,11 +176,7 @@ def dvc_delete_and_push_image(repo_dir, repo_base_image):
     os.system('dvc push')
 
 
-def auto_commit(repository, repo_dir, repo_token, branch):
-    local_repo = Repo(repo_dir)
-
-    print_debug_info(repo_dir, local_repo)
-
+def commit_added_base_images(local_repo, repository, repo_dir, repo_token, branch):
     # New Base images
     added_repo_base_image_paths = get_new_base_images(local_repo)
     print("Added Base images: ", added_repo_base_image_paths)
@@ -192,5 +188,16 @@ def auto_commit(repository, repo_dir, repo_token, branch):
     # git commit Base image: dvc pointer, and .gitignore
     commits_for_added_images = add_new_base_images_to_the_repo(
         local_repo, repository, repo_dir, repo_token, added_repo_base_image_paths, branch)
+
+    return commits_for_added_images
+
+
+def auto_commit(repository, repo_dir, repo_token, branch):
+    local_repo = Repo(repo_dir)
+
+    print_debug_info(repo_dir, local_repo)
+
+    commits_for_added_images = commit_added_base_images(
+        local_repo, repository, repo_dir, repo_token, branch)
 
     return commits_for_added_images
