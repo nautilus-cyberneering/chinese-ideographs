@@ -79,9 +79,7 @@ def get_deleted_base_images(repo):
     return filter_base_images(filter_media_library_files(all_deleted_files))
 
 
-def add_new_base_images_to_the_repo(local_repo, repository, repo_dir, repo_token, repo_base_image_paths, branch_ref):
-    # https://github.com/PyGithub/PyGithub/issues/1628
-
+def add_or_modify_base_images_in_git(repository, repo_dir, repo_token, repo_base_image_paths, branch_ref):
     gh = github.Github(repo_token)
 
     remote_repo = gh.get_repo(repository)
@@ -186,10 +184,26 @@ def commit_added_base_images(local_repo, repository, repo_dir, repo_token, branc
         dvc_add_and_push_image(repo_dir, repo_base_image)
 
     # git commit Base image: dvc pointer, and .gitignore
-    commits_for_added_images = add_new_base_images_to_the_repo(
-        local_repo, repository, repo_dir, repo_token, added_repo_base_image_paths, branch)
+    commits_for_added_images = add_or_modify_base_images_in_git(
+        repository, repo_dir, repo_token, added_repo_base_image_paths, branch)
 
     return commits_for_added_images
+
+
+def commit_modified_base_images(local_repo, repository, repo_dir, repo_token, branch):
+    # Modified Base images
+    modified_repo_base_image_paths = get_modified_base_images(local_repo)
+    print("Modified Base images: ", modified_repo_base_image_paths)
+
+    # dvc add and push
+    for repo_base_image in modified_repo_base_image_paths:
+        dvc_add_and_push_image(repo_dir, repo_base_image)
+
+    # git commit Base image: dvc pointer, and .gitignore
+    commits_for_modified_images = add_or_modify_base_images_in_git(
+        repository, repo_dir, repo_token, modified_repo_base_image_paths, branch)
+
+    return commits_for_modified_images
 
 
 def auto_commit(repository, repo_dir, repo_token, branch):
@@ -200,4 +214,7 @@ def auto_commit(repository, repo_dir, repo_token, branch):
     commits_for_added_images = commit_added_base_images(
         local_repo, repository, repo_dir, repo_token, branch)
 
-    return commits_for_added_images
+    commits_for_modified_images = commit_modified_base_images(
+        local_repo, repository, repo_dir, repo_token, branch)
+
+    return commits_for_added_images + commits_for_modified_images
