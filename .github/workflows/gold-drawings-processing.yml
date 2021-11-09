@@ -100,6 +100,9 @@ jobs:
       - name: Auto-commit added or modified images
         id: auto-commit
         uses: ./.github/actions/auto-commit-images
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         with:
           repository: "${{ github.repository }}"
           repo_dir: "${{ github.workspace }}"

@@ -166,7 +166,7 @@ def dvc_add_and_push_image(repo_dir, repo_base_image):
 
 def dvc_delete_and_push_image(repo_dir, repo_base_image):
     ''' Delete Base image from dvc and push to remote storage'''
-    cmd = f'cd {repo_dir} && dvc delete {repo_base_image}'
+    cmd = f'cd {repo_dir} && dvc remove {repo_base_image}'
     print(cmd)
     os.system(cmd)
     os.system('dvc push')
