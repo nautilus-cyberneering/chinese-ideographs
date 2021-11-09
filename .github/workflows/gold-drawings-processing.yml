@@ -109,10 +109,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           branch: "${{ github.head_ref }}"
 
-      - name: DVC garbage collector
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        run: dvc gc --cloud
-
 

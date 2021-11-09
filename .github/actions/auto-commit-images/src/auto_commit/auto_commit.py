@@ -167,11 +167,10 @@ def dvc_add_and_push_image(repo_dir, repo_base_image):
 
 
 def dvc_delete_local_and_remote_image(repo_dir, repo_base_image):
-    ''' Delete Base image from dvc and from remote storage'''
+    ''' Delete Base image from dvc'''
     cmd = f'cd {repo_dir} && dvc remove {repo_base_image}'
     print(cmd)
     os.system(cmd)
-    os.system('dvc gc --cloud')
 
 
 def commit_added_base_images(local_repo, repository, repo_dir, repo_token, branch):
