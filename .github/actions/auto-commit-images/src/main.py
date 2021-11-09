@@ -12,6 +12,8 @@ def main(repository, repo_dir, repo_token, branch):
     if len(commits) > 0:
         changes_detected = 'true'
 
+    print("Commits: ", commits)
+
     print(f'::set-output name=changes_detected::{changes_detected}')
 
 
