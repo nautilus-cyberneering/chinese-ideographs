@@ -239,4 +239,10 @@ def auto_commit(repository, repo_dir, repo_token, branch):
     commits_for_deleted_images = commit_deleted_base_images(
         local_repo, repository, repo_dir, repo_token, branch)
 
+    # TODO: process renamed files. dvc diff could return an output like:
+    # {added: [], deleted: [], modified: [], renamed: [{path: {old: data/000004/32/000004-32.600.2.tif, new: data/000005/32/000005-32.600.2.tif}}]}
+    # when a Gold or Base image is renamed or when you delete and create a new image with the same content (same md5 has).
+    # If we are renaming a GOld image we have to rename the corresponding Base image.
+    # If we are using a different artwork id we should warning that the image content is the same and make the workflow fail.
+
     return commits_for_added_images + commits_for_modified_images + commits_for_deleted_images
