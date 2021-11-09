@@ -105,7 +105,8 @@ def add_new_base_images_to_the_repo(local_repo, repository, repo_dir, repo_token
         base_image_gitignore_path = f'{repo_dir}/{repo_base_image_gitignore_path}'
 
         # Commit message
-        commit_message = f'Add Base image {repo_base_image_path}'
+        base_image_filename = os.path.basename(repo_base_image_path)
+        commit_message = f'Add Base image {base_image_filename}'
 
         branch = os.path.basename(branch_ref)
 
@@ -121,10 +122,13 @@ def add_new_base_images_to_the_repo(local_repo, repository, repo_dir, repo_token
 
         # Create git tree elements
 
-        blob1 = remote_repo.create_git_blob(base_image_pointer_path, "utf-8")
+        content1 = open(base_image_pointer_path, "rb").read()
+        blob1 = remote_repo.create_git_blob(content1, "utf-8")
         element1 = github.InputGitTreeElement(
             path=repo_base_image_pointer_path, mode='100644', type='blob', sha=blob1.sha)
-        blob2 = remote_repo.create_git_blob(base_image_gitignore_path, "utf-8")
+
+        content2 = open(base_image_gitignore_path, "rb").read()
+        blob2 = remote_repo.create_git_blob(content2, "utf-8")
         element2 = github.InputGitTreeElement(
             path=repo_base_image_gitignore_path, mode='100644', type='blob', sha=blob2.sha)
 
