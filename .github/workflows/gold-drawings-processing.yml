@@ -95,10 +95,18 @@ jobs:
 
       - name: Debug copy-base-folder ouput
         run: |
-          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"          
+          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
 
-      - name: Commit file
-        uses: ./.github/actions/auto-commit-push
-        id: auto-commit-push
+      - name: Auto-commit added or modified images
+        id: auto-commit
+        uses: ./.github/actions/auto-commit-images
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
         with:
-          job_state: ${{ steps.copy-base-folder.outputs.result }}
+          repository: "${{ github.repository }}"
+          repo_dir: "${{ github.workspace }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          branch: "${{ github.head_ref }}"
+
+
