@@ -19,7 +19,10 @@ However, to ensure that the project keeps improving without compromising its int
 
 ## What to know before contributing
 
-This project is still at a proof of concept stage. That means the final repository organization and/or name might change. And please read also our [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md).
+This project is still at a proof of concept stage. That means the final repository organization and/or name might change. And please read also our:
+
+- [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)
+- [Contributor Agreement](licensing/contributor_agreement_v01.md)
 
 ## How can I contribute?
 
