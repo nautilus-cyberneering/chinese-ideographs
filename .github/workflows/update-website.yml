@@ -1,0 +1,19 @@
+name: Update website
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  update-website:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Invoke workflow on website repository
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Import Base images from remote media library
+          repo: Nautilus-Cyberneering/chinese-ideographs-website
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          inputs: "{ \"library_sha\": \"${{ github.sha }}\" }"
