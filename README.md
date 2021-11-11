@@ -7,6 +7,7 @@
 - [Project Description](#project-description)
 - [Project Roadmap](#project-roadmap)
 - [Project Documentation](#project-documentation)
+
 ---
 
 ## Project Description
@@ -72,6 +73,7 @@ The given product roadmap does not represent a commitment, guarantee, obligation
 
 ## Project Documentation
 
+- [Contributing](CONTRIBUTING.md)
 - [Contributor Code of Conduct](documentation/Contributor_Code_of_Conduct.md)
 - [File Naming Convention](documentation/File_Naming_Convention.md)
 - [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
