@@ -20,6 +20,7 @@ Otherwise, for a differing "from" repo:
 will fetch the pull request from another monotree repository. Be sure to also set `githubmerge.pushmirrors` (see below).
 
 What it does:
+
 * Fetch master and the pull request.
 * Locally construct a merge commit.
 * Show the diff that merge results in.
@@ -52,11 +53,11 @@ limit for authenticated requests is much higher. If you start running
 into rate limiting errors it can be useful to set an authentication token
 so that the script can authenticate requests.
 
-- First, go to [Personal access tokens](https://github.com/settings/tokens).
-- Click 'Generate new token'.
-- Fill in an arbitrary token description. No further privileges are needed.
-- Click the `Generate token` button at the bottom of the form.
-- Copy the generated token (should be a hexadecimal string)
+* First, go to [Personal access tokens](https://github.com/settings/tokens).
+* Click 'Generate new token'.
+* Fill in an arbitrary token description. No further privileges are needed.
+* Click the `Generate token` button at the bottom of the form.
+* Copy the generated token (should be a hexadecimal string)
 
 Then do:
 
@@ -69,4 +70,3 @@ client via `pip3 install opentimestamps-client`. Then, download the gpg wrapper
 `ots-git-gpg-wrapper.sh` and set it as git's `gpg.program`. See
 [the ots git integration documentation](https://github.com/opentimestamps/opentimestamps-client/blob/master/doc/git-integration.md#usage)
 for further details.
-

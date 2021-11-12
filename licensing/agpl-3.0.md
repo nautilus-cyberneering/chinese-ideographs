@@ -232,7 +232,7 @@ beyond what the individual works permit. Inclusion of a covered work
 in an aggregate does not cause this License to apply to the other
 parts of the aggregate.
 
-### 6. Conveying Non-Source Forms.
+### 6. Conveying Non-Source Forms
 
 You may convey a covered work in object code form under the terms of
 sections 4 and 5, provided that you also convey the machine-readable
@@ -328,7 +328,7 @@ documented (and with an implementation available to the public in
 source code form), and must require no special password or key for
 unpacking, reading or copying.
 
-### 7. Additional Terms.
+### 7. Additional Terms
 
 "Additional permissions" are terms that supplement the terms of this
 License by making exceptions from one or more of its conditions.

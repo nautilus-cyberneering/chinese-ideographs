@@ -44,7 +44,7 @@ When creating an improvement issue, please provide the following information:
 
 - **Use a clear and descriptive title** for the issue to identify the suggestion.
 - **Provide a description of the suggested enhancement** as detailed as possible
-- **Explain why this improvement would be useful** to most users 
+- **Explain why this improvement would be useful** to most users
 
 ### Committing code to an issue
 
@@ -60,7 +60,7 @@ Before writing any code for the repository please do the following:
 
 New documentation contributions are also welcomed. They can improve the official documentation, add new examples or tutorials.
 The new documents must be added to the "documentation" folder, and they must be created or modified using the same issue - pull request method as the code contributions.
-Document format should be MarkDown unless an alternative format is really necessary. Naming should adhere to underscore [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
+Document format should be Markdown unless an alternative format is really necessary. Naming should adhere to underscore [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
 
 ## Styleguides
 
@@ -112,7 +112,7 @@ We are using autopep8 to enforce [PEP 8 -- Style Guide for Python](https://www.p
 
 ### Documentation styleguide
 
-Documentation should use MarkDown (.md) format. It must be written at least in English, but additional localized versions are also possible.
+Documentation should use Markdown (.md) format. It must be written at least in English, but additional localized versions are also possible.
 
 ## Issues, Commits and Pull Requests
 
