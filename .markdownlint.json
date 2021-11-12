@@ -1,0 +1,40 @@
+{
+	"MD013": false,
+	"MD029": {
+		"style": "ordered"
+	},
+	"MD043": {
+		"headings": [
+			"# markdownlint",
+			"## Intro",
+			"## Install",
+			"## Use",
+			"## Rules",
+			"## Configure",
+			"### markdownlint.config",
+			"### markdownlint.focusMode",
+			"### markdownlint.run",
+			"### markdownlint.ignore",
+			"### markdownlint.customRules",
+			"### markdownlint.lintWorkspaceGlobs",
+			"## Suppress",
+			"## Snippets",
+			"## Security",
+			"## History"
+		]
+	},
+	"MD044": {
+		"names": [
+			"CommonMark",
+			"Ctrl",
+			"JavaScript",
+			"Markdown",
+			"markdown-it",
+			"markdownlint",
+			"Node.js",
+			"Shift",
+			"Visual Studio Code"
+		],
+		"code_blocks": false
+	}
+}
