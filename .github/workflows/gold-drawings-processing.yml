@@ -97,7 +97,7 @@ jobs:
         run: |
           echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
 
-      - name: Git statyus
+      - name: Git status
         run: git status
 
       - name: Auto-commit added or modified images

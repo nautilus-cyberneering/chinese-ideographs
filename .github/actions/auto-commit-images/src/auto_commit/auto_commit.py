@@ -158,6 +158,13 @@ def add_or_modify_base_images_in_git(repository, repo_dir, repo_token, repo_base
     return commits
 
 
+def dvc_add_all_images_in_library(repo_dir):
+    ''' Execute dvc add for all iamges inlibrary'''
+    cmd = f'cd {repo_dir} && dvc add --glob data/**/*.tif && dvc add --glob data/**/*.tiff'
+    print(cmd)
+    os.system(cmd)
+
+
 def dvc_add_and_push_image(repo_dir, repo_base_image):
     ''' Add Base image to dvc and push to remote storage'''
     cmd = f'cd {repo_dir} && dvc add {repo_base_image}'
@@ -233,6 +240,9 @@ def auto_commit(repository, repo_dir, repo_token, branch):
     commits_for_added_images = commit_added_base_images(
         local_repo, repository, repo_dir, repo_token, branch)
 
+    # Modified Base images are not detected by git (tif file is ignored in git)
+    # until we add them to dvc and the dvc pointer (.dvc) file changes.
+    dvc_add_all_images_in_library(repo_dir)
     commits_for_modified_images = commit_modified_base_images(
         local_repo, repository, repo_dir, repo_token, branch)
 
