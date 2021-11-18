@@ -74,7 +74,7 @@ data/000000/32/000000-32.600.2.tif.dvc
 data/000000/32/.gitignore
 ```
 
-The first file is what we call the `dvc` pointer. It's just an small file that is used by `dvc` to track the file with git. This is the content for our example:
+The first file is what we call the `dvc` pointer. It's just a small file that is used by `dvc` to track the file with git. This is the content for our example:
 
 ```text
 outs:
@@ -139,11 +139,11 @@ Now we have the new branch with the new image ready to create the pull request.
 
 ### 6. Create the new pull request
 
-You can use the GitHub interface or you can use the link provided after pushing using the git from console. The pull request should look like:
+You can use the GitHub interface or you can use the link provided after pushing using the git from the console. The pull request should look like this:
 
 ![Add Gold Drawing - create pull request](./images/media-contributor-guide/new-pull-request.png)
 
-You can also use the `media` label.
+You can also use the `media` label. Remember to link the PR to the issue so that the issue is automatically closed automatically when the PR is merged.
 
 The PR is going to trigger the [workflow to process the Gold Drawings](../.github/workflows/gold-drawings-processing.yml).
 
