@@ -2,13 +2,16 @@
 
 Generic informaction about Gold Images on the ["Gold Images"](./Gold_Images.md) documentation.
 
+1. [How to add a new Gold Drawing](#how-to-add-a-new-gold-drawing)
+2. [How to update a Gold Drawing](#how-to-update-a-gold-drawing)
+
 ## How to add a new Gold Drawing
 
 1. [Generate filename](#1-generate-filename)
 2. [Place the image in the correct folder](#2-place-the-image-in-the-correct-folder)
 3. [Create a new issue and branch](#3-create-a-new-issue-and-branch)
 4. [Add the new image locally](#4-add-the-new-image-locally)
-5. [Share the new image remotely](#5-share-the-new-image-remotelly)
+5. [Share the new image remotely](#5-share-the-new-image-remotely)
 6. [Create the new pull request](#6-create-the-new-pull-request)
 7. [Validate and merge the pull requests](#7-validate-and-merge-the-pull-requests)
 8. [New version of the website deployed](#8-new-version-of-the-website-deployed)
