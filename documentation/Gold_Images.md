@@ -1,5 +1,7 @@
 # Gold Images
 
+A Gold image is an HQ Image generated from the raw acquired, with no further processing but cropping, aligning and, some small resizing.
+
 ## Adding a new gold image
 
 1. Add the image to the corresponding folder.  
