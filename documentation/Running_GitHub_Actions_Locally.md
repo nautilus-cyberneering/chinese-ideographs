@@ -6,19 +6,31 @@ We are using a docker image to run GitHub Actions locally: <https://github.com/n
 
 Trigger a `push` event running only the `build` job:
 
+<<<<<<< Updated upstream
 ```
+=======
+```text
+>>>>>>> Stashed changes
 act -j build
 ```
 
 Trigger a `pull request` event running only the `build` job:
 
+<<<<<<< Updated upstream
 ```
+=======
+```text
+>>>>>>> Stashed changes
 act pull_request -j build
 ```
 
 > NOTE: `act` only builds your docker GitHub actions once. If you want to force a rebuild you have to remove the previously generated image with:
 
+<<<<<<< Updated upstream
 ```
+=======
+```text
+>>>>>>> Stashed changes
 docker image rm act-github-actions-YOUR-ACTION-FOLDER-NAME
 ```
 
@@ -32,7 +44,7 @@ When you run `act` with a docker action, `act` will build the docker image if it
 
 Sometimes you can get this error:
 
-```
+```text
 ADD failed: file not found in build context or excluded by .dockerignore: stat src: file does not exist
 ```
 
@@ -52,7 +64,7 @@ Issue: <https://github.com/nektos/act/issues/839>
 
 There is at least one case where you do not get the right value from the previous output. Until the bug is fixed, we are creating two versions of the same step in the workflow:
 
-```
+```text
 - name: Validate Gold images folder (act)
   if: ${{ env.ACT }}
   uses: ./.github/actions/validate-gold-image-folder

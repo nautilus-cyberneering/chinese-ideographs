@@ -2,7 +2,7 @@
 
 For codes explanation see [File Naming Convention](File_Naming_Convention.md)
 
-Format:
+## Format
 
 ```text
 {ARTWORK_ID}-{PURPOSE_CODE}.{TRANSFORMATION_CODE}.{TYPE_CODE}.tif
