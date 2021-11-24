@@ -47,5 +47,6 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 <<<<<<< Updated upstream
 For answers to common questions about this code of conduct, see <https://www.contributor-covenant.org/faq>
 =======
+
 For answers to common questions about this code of conduct, see <https://www.contributor-covenant.org/faq>
 >>>>>>> Stashed changes
