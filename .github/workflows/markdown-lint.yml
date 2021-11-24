@@ -16,5 +16,5 @@ jobs:
     - name: Lint markdown files
       uses: docker://avtodev/markdown-lint:v1
       with:
-        config: "./markdownlint.json"
+        config: "./.markdownlint.json"
         args: "./**/*.md"
