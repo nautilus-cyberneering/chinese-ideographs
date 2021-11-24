@@ -6,34 +6,19 @@ We are using a docker image to run GitHub Actions locally: <https://github.com/n
 
 Trigger a `push` event running only the `build` job:
 
-<<<<<<< Updated upstream
-
-```
-=======
-```text
->>>>>>> Stashed changes
+```shell
 act -j build
 ```
 
 Trigger a `pull request` event running only the `build` job:
 
-<<<<<<< Updated upstream
-
-```
-=======
-```text
->>>>>>> Stashed changes
+```shell
 act pull_request -j build
 ```
 
 > NOTE: `act` only builds your docker GitHub actions once. If you want to force a rebuild you have to remove the previously generated image with:
 
-<<<<<<< Updated upstream
-
-```
-=======
-```text
->>>>>>> Stashed changes
+```shell
 docker image rm act-github-actions-YOUR-ACTION-FOLDER-NAME
 ```
 
