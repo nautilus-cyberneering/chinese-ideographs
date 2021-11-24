@@ -3,26 +3,7 @@
 	"MD029": {
 		"style": "ordered"
 	},
-	"MD043": {
-		"headings": [
-			"# markdownlint",
-			"## Intro",
-			"## Install",
-			"## Use",
-			"## Rules",
-			"## Configure",
-			"### markdownlint.config",
-			"### markdownlint.focusMode",
-			"### markdownlint.run",
-			"### markdownlint.ignore",
-			"### markdownlint.customRules",
-			"### markdownlint.lintWorkspaceGlobs",
-			"## Suppress",
-			"## Snippets",
-			"## Security",
-			"## History"
-		]
-	},
+	"MD043": false,
 	"MD044": {
 		"names": [
 			"CommonMark",
