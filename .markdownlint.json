@@ -1,0 +1,21 @@
+{
+	"MD013": false,
+	"MD029": {
+		"style": "ordered"
+	},
+	"MD043": false,
+	"MD044": {
+		"names": [
+			"CommonMark",
+			"Ctrl",
+			"JavaScript",
+			"Markdown",
+			"markdown-it",
+			"markdownlint",
+			"Node.js",
+			"Shift",
+			"Visual Studio Code"
+		],
+		"code_blocks": false
+	}
+}
