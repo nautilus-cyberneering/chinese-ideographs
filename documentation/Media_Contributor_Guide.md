@@ -143,7 +143,7 @@ You can use the GitHub interface or you can use the link provided after pushing 
 
 ![Add Gold Drawing - create pull request](./images/media-contributor-guide/new-pull-request.png)
 
-You can also use the `media` label. Remember to link the PR to the issue so that the issue is automatically closed automatically when the PR is merged.
+You can also use the `media` label. Remember to link the PR to the issue so that the issue is closed automatically when the PR is merged.
 
 The PR is going to trigger the [workflow to process the Gold Drawings](../.github/workflows/gold-drawings-processing.yml).
 
@@ -151,7 +151,7 @@ What this worflow does is:
 
 - Use `dvc diff` command to detect the new Gold image.
 - Validate the filename, folder and size of the image.
-- Generate a Base image from the Gold. It's an smaller version of the image.
+- Generate a Base image from the Gold. It's a smaller version of the image.
 
 When the workflow finishes you should see two new commits in your pull request branch.
 
