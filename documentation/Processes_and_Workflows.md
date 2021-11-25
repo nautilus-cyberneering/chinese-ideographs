@@ -29,12 +29,12 @@ The first step is adding the actual gold image file to the repository. This is d
 ## Step 3: Base images merge and triggered workflows
 
 3.1 - When the PR created in the previous step is approved and merged into the librarian main branch, this may trigger automations in other repositories. In our example, it will trigger a workflow in the _website_ repository that will execute the following steps:
-	3.1.1 - The librarian submodule inside the website repository is updated with the latest version of the librarian repository.
-	3.1.2 - A DVC Diff is made, comparing the updated version of the librarian repository of the previous one.
-	3.1.3 - All the image files are pulled from the remote storage into the librarian submodule, and then copied to the website repository.
-	3.1.4 - The base images are processed to generate the web-ready version images.
-	3.1.5 - The web-ready images are directly commited to the main branch of the repository (No DVC storage is used).
-	3.1.6 - The library submodule update is commited to the main branch of the repository.
-	3.1.7 - The gh-pages branch of the website repository, which contain the public web, is updated with the new images.
-	
+  3.1.1 - The librarian submodule inside the website repository is updated with the latest version of the librarian repository.
+  3.1.2 - A DVC Diff is made, comparing the updated version of the librarian repository of the previous one.
+  3.1.3 - All the image files are pulled from the remote storage into the librarian submodule, and then copied to the website repository.
+  3.1.4 - The base images are processed to generate the web-ready version images.
+  3.1.5 - The web-ready images are directly commited to the main branch of the repository (No DVC storage is used).
+  3.1.6 - The library submodule update is commited to the main branch of the repository.
+  3.1.7 - The gh-pages branch of the website repository, which contain the public web, is updated with the new images.
+
 ![Gitflows diagram](gitflows.png)
