@@ -1,0 +1,22 @@
+name: Test librarian submodule
+
+on:
+  pull_request:
+    branches: [ main, issue-* ]
+
+jobs:
+  process-gold-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
+
+
+      - name: Build docker image
+        run: ./librarian/bin/build.sh
+
+      - name: Run example 03
+        run: |
+          docker run --rm librarian process
