@@ -18,6 +18,6 @@ jobs:
           cd librarian
           ./bin/build.sh
 
-      - name: Run example 03
+      - name: Invoke "process" command on librarian
         run: |
           docker run --rm librarian process
