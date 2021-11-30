@@ -14,7 +14,9 @@ jobs:
           submodules: 'true'
 
       - name: Build docker image
-        run: ./librarian/bin/build.sh
+        run: |
+          cd librarian
+          ./bin/build.sh
 
       - name: Run example 03
         run: |
