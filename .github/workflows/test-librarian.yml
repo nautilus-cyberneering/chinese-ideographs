@@ -10,9 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
-
+        with:  
+          submodules: 'true'
 
       - name: Build docker image
         run: ./librarian/bin/build.sh
