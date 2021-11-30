@@ -5,7 +5,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  process-gold-images:
+  test-librarian-submodule:
     runs-on: ubuntu-latest
 
     steps:
