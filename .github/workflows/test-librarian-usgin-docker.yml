@@ -7,10 +7,11 @@ on:
 jobs:
   test-librarian-submodule:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-        with:  
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
           submodules: 'true'
 
       - name: Build docker image
@@ -19,4 +20,4 @@ jobs:
 
       - name: Invoke "help" on Librarian
         run: |
-          cd librarian && ./bin/docker/run.sh --help
+          cd librarian && docker run --rm -i nautilus-librarian --help

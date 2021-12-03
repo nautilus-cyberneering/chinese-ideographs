@@ -12,6 +12,8 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'     
 
       - name: Setup Python
         uses: actions/setup-python@v2.3.1
