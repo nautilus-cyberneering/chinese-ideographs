@@ -12,9 +12,33 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
+          submodules: 'true'
 
       - name: Setup DVC
         uses: iterative/setup-dvc@v1
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.3.1
+        with:
+          python-version: '3.9'
+
+      - name: Setup Poetry
+        run: pip3 install poetry
+
+      - name: Update Librarian submodule
+        id: update-librarian
+        run: |
+          git submodule status
+          git submodule update --remote
+
+      - name: Install Librarian with Poetry
+        run: |
+          cd librarian
+          poetry --version
+          poetry install
+          poetry build
+          pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-0.1.0-py3-none-any.whl"
+          nautilus-librarian --help
 
       - name: Pull images from remote storage
         env:
