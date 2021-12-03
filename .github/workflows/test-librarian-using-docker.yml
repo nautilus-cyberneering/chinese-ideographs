@@ -1,11 +1,13 @@
 name: Test Librarian integration using Docker
 
 on:
+  push:
+    branches: [ main, issue-* ]
   pull_request:
     branches: [ main, issue-* ]
 
 jobs:
-  test-librarian-submodule:
+  test-librarian-using-docker:
     runs-on: ubuntu-latest
     steps:
 

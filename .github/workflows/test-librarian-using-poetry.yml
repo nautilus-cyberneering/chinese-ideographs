@@ -2,11 +2,12 @@ name: Test Librarian integration using Poetry
 
 on:
   push:
-    branches: [ main, develop, issue-* ]
+    branches: [ main, issue-* ]
+  pull_request:
+    branches: [ main, issue-* ]
 
 jobs:
-  build:
-    name: Test
+  test-librarian-using-docker:
     runs-on: ubuntu-latest
     steps:
     
