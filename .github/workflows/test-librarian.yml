@@ -15,9 +15,8 @@ jobs:
 
       - name: Build docker image
         run: |
-          cd librarian
-          ./bin/build.sh
+          cd librarian && ./bin/docker/build.sh
 
-      - name: Invoke "process" command on librarian
+      - name: Invoke "help" on librarian
         run: |
-          docker run --rm librarian process
+          ./bin/docker/run.sh --help
