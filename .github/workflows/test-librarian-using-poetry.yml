@@ -7,7 +7,7 @@ on:
     branches: [ main, issue-* ]
 
 jobs:
-  test-librarian-using-docker:
+  test-librarian-using-poetry:
     runs-on: ubuntu-latest
     steps:
     
