@@ -1,4 +1,4 @@
-name: Test librarian submodule
+name: Test Librarian integration using Docker
 
 on:
   pull_request:
@@ -17,6 +17,6 @@ jobs:
         run: |
           cd librarian && ./bin/docker/build.sh
 
-      - name: Invoke "help" on librarian
+      - name: Invoke "help" on Librarian
         run: |
-          ./bin/docker/run.sh --help
+          cd librarian && ./bin/docker/run.sh --help
