@@ -23,7 +23,7 @@ jobs:
           python-version: '3.9'
 
       - name: Setup Poetry
-        run: pip3 install poetry
+        run: pip3 install poetry poetry-dynamic-versioning
 
       - name: Update Librarian submodule
         id: update-librarian
@@ -36,8 +36,9 @@ jobs:
           cd librarian
           poetry --version
           poetry install
+          poetry version --short
           poetry build
-          pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-0.1.0-py3-none-any.whl"
+          pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-$(poetry version --short)-py3-none-any.whl"
           nautilus-librarian --help
 
       - name: Pull images from remote storage
