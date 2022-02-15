@@ -1,4 +1,4 @@
-name: Gold Drawings Processing
+name: Gold Drawings Processing Using Nautilus Librarian
 
 on:
   pull_request:
@@ -14,9 +14,6 @@ jobs:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
           submodules: 'true'
 
-      - name: Setup DVC
-        uses: iterative/setup-dvc@v1
-
       - name: Setup Python
         uses: actions/setup-python@v2.3.1
         with:
@@ -24,12 +21,6 @@ jobs:
 
       - name: Setup Poetry
         run: pip3 install poetry poetry-dynamic-versioning
-
-      - name: Update Librarian submodule
-        id: update-librarian
-        run: |
-          git submodule status
-          git submodule update --remote
 
       - name: Install Librarian with Poetry
         run: |
@@ -40,101 +31,3 @@ jobs:
           poetry build
           pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-$(poetry version --short)-py3-none-any.whl"
           nautilus-librarian --help
-
-      - name: Pull images from remote storage
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        run: dvc pull --remote azure
-
-      - name: Debug env vars
-        shell: bash
-        run: ./.github/scripts/debug-env-vars.sh
-
-      - name: Set env
-        run: |
-          echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
-          echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
-
-      - name: Git diff
-        run: |
-          git show-ref
-          echo "git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}"
-          git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}
-
-      - name: DVC diff
-        id: dvc-diff
-        uses: ./.github/actions/dvc-diff
-        env:
-          DVC_REPO_DIR: "${{ github.workspace }}"
-
-      - name: Debug diff ouput
-        run: |
-          echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
-
-      - name: Validate filenames
-        uses: ./.github/actions/validate-filenames
-        with:
-          filenames: ${{ steps.dvc-diff.outputs.diff }}
-
-      - name: Validate Gold images folder
-        uses: ./.github/actions/validate-gold-image-folder
-        with:
-          filepaths: ${{ steps.dvc-diff.outputs.diff }}
-
-      - name: Validate Gold images sizes
-        uses: ./.github/actions/validate-image-size
-        with:
-          job_state: ${{ steps.dvc-diff.outputs.diff }}
-          min_size: 320
-          max_size: 340000          
-
-      - name: Resize gold images
-        uses: ./.github/actions/resize-image
-        id: resize
-        with:
-          job_state: ${{ steps.dvc-diff.outputs.diff }}
-          width: 320
-          height: 200          
-
-      - name: Debug resize ouput
-        run: |
-          echo "Result: ${{ steps.resize.outputs.result }}"          
-
-      - name: Change image profile
-        uses: ./.github/actions/modify-image-icc-profile
-        id: icc-modification
-        with:
-          job_state: ${{ steps.resize.outputs.result }}
-          profile: sRGB
-
-      - name: Debug icc-modification ouput
-        run: |
-          echo "Result: ${{ steps.icc-modification.outputs.result }}"          
-
-      - name: Copy to final folder
-        uses: ./.github/actions/copy-to-base-folder
-        id: copy-base-folder
-        with:
-          job_state: '${{ steps.icc-modification.outputs.result }}'
-
-      - name: Debug copy-base-folder ouput
-        run: |
-          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
-
-      - name: Git status
-        run: git status
-
-      - name: Auto-commit added or modified images
-        id: auto-commit
-        uses: ./.github/actions/auto-commit-images
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        with:
-          repository: "${{ github.repository }}"
-          repo_dir: "${{ github.workspace }}"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          branch: "${{ github.head_ref }}"
-
-
