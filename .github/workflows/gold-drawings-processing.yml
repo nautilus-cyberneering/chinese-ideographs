@@ -31,3 +31,6 @@ jobs:
           poetry build
           pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-$(poetry version --short)-py3-none-any.whl"
           nautilus-librarian --help
+
+      - name: Run librarian gold image processing command
+          nautilus_librarian gold-image-processing
