@@ -28,6 +28,11 @@ jobs:
       - name: Install Librarian using Python package (documented way)
         run: pip install nautilus-librarian
 
+      - name: Set GPG key user as the Git global user
+        run: |
+          git config --global user.email "test@test.com"
+          git config --global user.name "Test User"
+
       - name: Run librarian gold image processing command
         run: |
           nautilus-librarian gold-images-processing
