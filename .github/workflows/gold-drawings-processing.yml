@@ -26,7 +26,7 @@ jobs:
           sudo apt-get install -y libvips-dev 
 
       - name: Install Librarian using Python package (documented way)
-        pip install nautilus-librarian
+        run: pip install nautilus-librarian
 
       - name: Run librarian gold image processing command
         run: |
