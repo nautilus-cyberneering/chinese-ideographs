@@ -3,6 +3,7 @@ name: Gold Drawings Processing Using Nautilus Librarian
 on:
   pull_request:
     branches: [ main, issue-* ]
+  workflow_dispatch:
 
 jobs:
   process-gold-images:
