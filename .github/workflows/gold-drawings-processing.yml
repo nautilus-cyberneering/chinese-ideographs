@@ -30,4 +30,4 @@ jobs:
 
       - name: Run librarian gold image processing command
         run: |
-          nautilus-librarian gold-image-processing
+          nautilus-librarian gold-images-processing
