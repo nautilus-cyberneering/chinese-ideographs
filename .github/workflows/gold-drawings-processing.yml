@@ -19,18 +19,14 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Setup Poetry
-        run: pip3 install poetry poetry-dynamic-versioning
-
-      - name: Install Librarian with Poetry
+      - name: Install Librarian dependencies
         run: |
-          cd librarian
-          poetry --version
-          poetry install
-          poetry version --short
-          poetry build
-          pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-$(poetry version --short)-py3-none-any.whl"
-          nautilus-librarian --help
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install -y libvips-dev 
+
+      - name: Install Librarian using Python package (documented way)
+        pip install nautilus-librarian
 
       - name: Run librarian gold image processing command
         run: |
