@@ -33,4 +33,5 @@ jobs:
           nautilus-librarian --help
 
       - name: Run librarian gold image processing command
+        run: |
           nautilus_librarian gold-image-processing
