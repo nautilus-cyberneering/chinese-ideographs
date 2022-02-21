@@ -41,7 +41,7 @@ jobs:
 
       - name: Run librarian gold image processing command
         run: |
-          nautilus-librarian gold-images-processing --previous-ref 88e81f9  --current-ref HEAD
+          nautilus-librarian gold-images-processing --previous-ref 9ebeef2  --current-ref HEAD
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
