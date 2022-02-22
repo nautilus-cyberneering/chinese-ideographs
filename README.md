@@ -29,6 +29,7 @@ We will develop a continuous integration workflow that automatically manipulates
 The image validation and processing is done using [Nautilus Librarian](https://github.com/Nautilus-Cyberneering/nautilus-librarian), a console application to handle image libraries.
 
 This librarian will perform those general task on each one of the new images uploaded to the repository:
+
 - Validate its path and filename
 - Generate the base images
 - Commit the new base images to the repository
