@@ -24,6 +24,17 @@ We will develop a continuous integration workflow that automatically manipulates
 
 (future) We need to have a polished workflow with supporting tools (such as a GUI application for the desktop computers, or at least a plugin for a good GIT GUI), that will help manage the process of updating and creating a pull request for the artists.
 
+### Technical details
+
+The image validation and processing is done using [Nautilus Librarian](https://github.com/Nautilus-Cyberneering/nautilus-librarian), a console application to handle image libraries.
+
+This librarian will perform those general task on each one of the new images uploaded to the repository:
+- Validate its path and filename
+- Generate the base images
+- Commit the new base images to the repository
+
+This process is done in a Github actions workflow that is triggered when a new Pull Request with a Gold Image operation is created.
+
 ### Benefit
 
 Reducing the impact of human intervention, eliminating human errors and creating consistency as well as time savings in a project that is expected to grow with time as more and more media is generated for either three of the final products.
