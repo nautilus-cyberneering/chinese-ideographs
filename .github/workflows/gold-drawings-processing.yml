@@ -31,6 +31,12 @@ jobs:
           git submodule status
           git submodule update --remote
 
+      - name: Install Librarian dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install -y libvips-dev          
+
       - name: Install Librarian with Poetry
         run: |
           cd librarian
