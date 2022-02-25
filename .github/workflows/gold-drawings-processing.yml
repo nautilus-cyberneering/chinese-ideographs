@@ -1,8 +1,9 @@
-name: Gold Drawings Processing
+name: Gold Drawings Processing Using Nautilus Librarian
 
 on:
   pull_request:
     branches: [ main, issue-* ]
+  workflow_dispatch:
 
 jobs:
   process-gold-images:
@@ -14,133 +15,38 @@ jobs:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
           submodules: 'true'
 
-      - name: Setup DVC
-        uses: iterative/setup-dvc@v1
-
       - name: Setup Python
         uses: actions/setup-python@v2.3.1
         with:
           python-version: '3.9'
 
-      - name: Setup Poetry
-        run: pip3 install poetry poetry-dynamic-versioning
-
-      - name: Update Librarian submodule
-        id: update-librarian
-        run: |
-          git submodule status
-          git submodule update --remote
-
       - name: Install Librarian dependencies
         run: |
           sudo apt-get update
           sudo apt-get upgrade -y
-          sudo apt-get install -y libvips-dev          
+          sudo apt-get install -y libvips-dev 
 
-      - name: Install Librarian with Poetry
-        run: |
-          cd librarian
-          poetry --version
-          poetry install
-          poetry version --short
-          poetry build
-          pip install --user "${{ github.workspace }}/librarian/dist/nautilus_librarian-$(poetry version --short)-py3-none-any.whl"
-          nautilus-librarian --help
+      - name: Install Librarian using Python package (documented way)
+        run: pip install nautilus-librarian
 
-      - name: Pull images from remote storage
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        run: dvc pull --remote azure
-
-      - name: Debug env vars
-        shell: bash
-        run: ./.github/scripts/debug-env-vars.sh
+      - name: Import GPG key used for testing
+        id: import-gpg
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.TEST_GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.TEST_PASSPHRASE }}
+          git_config_global: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
 
       - name: Set env
         run: |
           echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
           echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
 
-      - name: Git diff
+      - name: Run librarian gold image processing command
         run: |
-          git show-ref
-          echo "git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}"
-          git --no-pager diff ${{ env.PREVIOUS_REF }} ${{ env.CURRENT_REF }}
-
-      - name: DVC diff
-        id: dvc-diff
-        uses: ./.github/actions/dvc-diff
-        env:
-          DVC_REPO_DIR: "${{ github.workspace }}"
-
-      - name: Debug diff ouput
-        run: |
-          echo "The diff output is: ${{ steps.dvc-diff.outputs.diff }}"
-
-      - name: Validate filenames
-        uses: ./.github/actions/validate-filenames
-        with:
-          filenames: ${{ steps.dvc-diff.outputs.diff }}
-
-      - name: Validate Gold images folder
-        uses: ./.github/actions/validate-gold-image-folder
-        with:
-          filepaths: ${{ steps.dvc-diff.outputs.diff }}
-
-      - name: Validate Gold images sizes
-        uses: ./.github/actions/validate-image-size
-        with:
-          job_state: ${{ steps.dvc-diff.outputs.diff }}
-          min_size: 320
-          max_size: 340000          
-
-      - name: Resize gold images
-        uses: ./.github/actions/resize-image
-        id: resize
-        with:
-          job_state: ${{ steps.dvc-diff.outputs.diff }}
-          width: 320
-          height: 200          
-
-      - name: Debug resize ouput
-        run: |
-          echo "Result: ${{ steps.resize.outputs.result }}"          
-
-      - name: Change image profile
-        uses: ./.github/actions/modify-image-icc-profile
-        id: icc-modification
-        with:
-          job_state: ${{ steps.resize.outputs.result }}
-          profile: sRGB
-
-      - name: Debug icc-modification ouput
-        run: |
-          echo "Result: ${{ steps.icc-modification.outputs.result }}"          
-
-      - name: Copy to final folder
-        uses: ./.github/actions/copy-to-base-folder
-        id: copy-base-folder
-        with:
-          job_state: '${{ steps.icc-modification.outputs.result }}'
-
-      - name: Debug copy-base-folder ouput
-        run: |
-          echo "Result: ${{ steps.copy-base-folder.outputs.result }}"
-
-      - name: Git status
-        run: git status
-
-      - name: Auto-commit added or modified images
-        id: auto-commit
-        uses: ./.github/actions/auto-commit-images
+          nautilus-librarian gold-images-processing --previous-ref ${{ env.PREVIOUS_REF }}  --current-ref ${{ env.CURRENT_REF }}
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-        with:
-          repository: "${{ github.repository }}"
-          repo_dir: "${{ github.workspace }}"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          branch: "${{ github.head_ref }}"
-
-

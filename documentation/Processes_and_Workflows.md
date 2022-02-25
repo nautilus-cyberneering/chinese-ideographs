@@ -4,6 +4,8 @@ The usage of the Chinese ideograph services and features implies several interde
 
 In this document we will review an end-to-end typical use case: the addition of a "gold" image to the repository: the actions that must be done by the users and the actions it triggers.
 
+*Disclaimer*: this information was written when the [Nautilus Librarian](https://github.com/Nautilus-Cyberneering/nautilus-librarian) media handler was used as a submodule. Currently, it is being used directly as a command line application. Information in this document, therefore, may not be accurate now.
+
 ## Terminology
 
 Please review this document to know more about the different kinds of images that can be present in the repository or its related entities (like a website that consumes it).
