@@ -39,9 +39,14 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
+      - name: Set env
+        run: |
+          echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
+          echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
+
       - name: Run librarian gold image processing command
         run: |
-          nautilus-librarian gold-images-processing --previous-ref HEAD~1  --current-ref HEAD
+          nautilus-librarian gold-images-processing --previous-ref ${{ env.PREVIOUS_REF }}  --current-ref ${{ env.CURRENT_REF }}
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
