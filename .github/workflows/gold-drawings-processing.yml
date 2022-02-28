@@ -54,10 +54,11 @@ jobs:
 
       - name: Show latest commits
         run: |
+          git status
           git log --pretty="fuller" --show-signature -5
 
       - name: Push
         id: push
         shell: bash
         run: |
-          git push
+          git push origin ${{ github.head_ref }}
