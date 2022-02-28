@@ -31,7 +31,7 @@ jobs:
 
       - name: Import GPG key used for testing
         id: import-gpg
-        uses: crazy-max/ghaction-import-gpg@v4
+        uses: crazy-max/ghaction-import-gpg@baa427b5b44047bccaea7f847cb94252ace52c90
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
