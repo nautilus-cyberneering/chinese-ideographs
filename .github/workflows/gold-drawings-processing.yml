@@ -61,4 +61,4 @@ jobs:
         id: push
         shell: bash
         run: |
-          git push origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
