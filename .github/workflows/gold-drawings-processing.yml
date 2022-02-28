@@ -2,7 +2,7 @@ name: Gold Drawings Processing Using Nautilus Librarian
 
 on:
   pull_request:
-    branches: [ main, issue-* ]
+    branches: [main, issue-*]
   workflow_dispatch:
 
 jobs:
@@ -13,18 +13,18 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # To fetch all history for all branches and tags. Needed for git diff.
-          submodules: 'true'
+          submodules: "true"
 
       - name: Setup Python
         uses: actions/setup-python@v2.3.1
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install Librarian dependencies
         run: |
           sudo apt-get update
           sudo apt-get upgrade -y
-          sudo apt-get install -y libvips-dev 
+          sudo apt-get install -y libvips-dev
 
       - name: Install Librarian using Python package (documented way)
         run: pip install nautilus-librarian
@@ -51,3 +51,13 @@ jobs:
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+
+      - name: Show latest commits
+        run: |
+          git log --pretty="fuller" --show-signature -5
+
+      - name: Push
+        id: push
+        shell: bash
+        run: |
+          git push
