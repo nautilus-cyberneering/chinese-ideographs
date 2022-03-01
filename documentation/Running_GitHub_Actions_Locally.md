@@ -57,7 +57,7 @@ There is at least one case where you do not get the right value from the previou
   if: ${{ env.ACT }}
   uses: ./.github/actions/validate-gold-image-folder
   with:
-   filepaths: '{"added": [{"path": "data/000001/42/000001-42.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
+   filepaths: '{"added": [{"path": "data/000001/52/000001-52.600.2.tif"}], "deleted": [], "modified": [], "renamed": [], "not in cache": []}'
 
 - name: Validate Gold images folder (runner)
   if: ${{ !env.ACT }}
