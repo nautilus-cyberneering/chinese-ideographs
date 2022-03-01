@@ -57,7 +57,7 @@ All participants in the community are encouraged to provide support for new user
 
 ## Contribution Process
 
-Anyone can contribute to the project, regardless of their skills, as there are many ways to contribute. For instance, a contributor might be active on the issue tracker, or might supply patches. The various ways of contributing are described in more detail in [CONTRIBUTING](CONTRIBUTING.md).
+Anyone can contribute to the project, regardless of their skills, as there are many ways to contribute. For instance, a contributor might be active on the issue tracker, or might supply patches. The various ways of contributing are described in more detail in [CONTRIBUTING](../CONTRIBUTING.md).
 
 The issue tracker is the most appropriate place for a contributor to ask for help when making their first contribution.
 

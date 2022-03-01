@@ -17,7 +17,7 @@
     └── README.md
     ```
 
-    Make sure you follow the [conventions](./data/README.md).  
+    Make sure you follow the [conventions](./Filenames_and_Folder_Structure_Conventions.md).  
 
 2. Add the new file to `dvc`
 

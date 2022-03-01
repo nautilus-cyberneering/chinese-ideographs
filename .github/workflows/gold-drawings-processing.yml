@@ -42,8 +42,8 @@ jobs:
 
       - name: Set env
         run: |
-          echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> $GITHUB_ENV
-          echo "CURRENT_REF=HEAD" >> $GITHUB_ENV
+          echo "PREVIOUS_REF=origin/${{ github.base_ref }}" >> "$GITHUB_ENV"
+          echo "CURRENT_REF=HEAD" >> "$GITHUB_ENV"
 
       - name: Run librarian gold image processing command
         run: |
@@ -60,5 +60,7 @@ jobs:
       - name: Push
         id: push
         shell: bash
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:"$HEAD_REF"

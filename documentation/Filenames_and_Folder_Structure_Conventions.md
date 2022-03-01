@@ -28,7 +28,7 @@ Artwork ID: manually assigned between 000000 and 999999 for drawings.
 
 Purpose Code:
 | Code | Desc          |
-| ---- | ------------- |
+|------|---------------|
 | 30   | gold index    |
 | 31   | gold metadata |
 | 32   | gold image    |
@@ -38,17 +38,17 @@ Purpose Code:
 
 Transformation Code:
 | Code | Desc     |
-| ---- | -------- |
+|------|----------|
 | 600  | original |
 
 Type Code:
 | Code | Desc     |
-| ---- | -------- |
+|------|----------|
 | 0    | index    |
 | 1    | metadata |
 | 2    | image    |
 
-Extention must be `tif` for images. We are not going to use `tiff`.
+Extension must be `tif` for images. We are not going to use `tiff`.
 
 ## Image folder structure
 
