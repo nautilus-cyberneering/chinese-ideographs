@@ -1,4 +1,4 @@
-name: Gold Drawings Processing Using Nautilus Librarian
+name: Gold Drawings Processing
 
 on:
   pull_request:
