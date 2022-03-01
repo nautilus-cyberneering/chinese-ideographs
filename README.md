@@ -1,6 +1,6 @@
 # Chinese Ideographs
 
-[![Gold Drawings Processing](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml/badge.svg)](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml)
+[![Gold Drawings Processing](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml/badge.svg)](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/gold-drawings-processing.yml) [![MegaLinter](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/Nautilus-Cyberneering/chinese-ideographs/actions/workflows/mega-linter.yml)
 
 ## Content
 
@@ -62,27 +62,6 @@ Ethical Software Ltd. (Hong Kong)
 All images in this repository are images supplied by Ethical Software Ltd.
 This content by Ethical Software is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/). Please take some time and read their [Privacy Policy](https://www.ethicalsoftware.hk/?page_id=3).
 
-## Project Roadmap
-
-You can find our official public project roadmap for the project [here](https://github.com/Nautilus-Cyberneering/chinese-ideographs/projects/2). Our project roadmap is where you can learn about what features we're working on, what stage they're in, and when we expect to finish these.
-Since we work with an agile approach, this roadmap will get updated as work progresses to incorporate changes.
-
-### Guide to the roadmap
-
-Given that our project is rather small at the moment, we have no separate repository for the roadmap.
-Every item on the roadmap is a card since we are currently working with a private second project board in this same repository.
-You will see different cards that are called POC. POC standing for "proof of concept".
-
-### Roadmap stages
-
-The roadmap is arranged on a project board to give you a better understanding of what parts are planned to be worked upon during each coming quater. Every feature is added to a particular project board column according to the quarter in which it is expected to be ready.
-
-The roadmap is subject to change, especially further out in time. You'll also find an Exploratory column for when no timeframe is available yet for specific features.
-
-### Disclaimer
-
-The given product roadmap does not represent a commitment, guarantee, obligation or promise to deliver any feature, document, or part of the project by any particular date. The roadmap is intended to outline the general plan.
-
 ## Project Documentation
 
 - [Contributing](CONTRIBUTING.md)
@@ -91,3 +70,4 @@ The given product roadmap does not represent a commitment, guarantee, obligation
 - [Filenames and Folder Structure Conventions](documentation/Filenames_and_Folder_Structure_Conventions.md)
 - [Gold Images](documentation/Gold_Images.md)
 - [Governance](documentation/Governance.md)
+- [Roadmap](documentation/Roadmap.md)
