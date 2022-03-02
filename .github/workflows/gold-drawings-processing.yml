@@ -26,10 +26,12 @@ jobs:
           sudo apt-get upgrade -y
           sudo apt-get install -y libvips-dev
 
-      - name: Install Librarian using Python package (documented way)
-        run: pip install nautilus-librarian
+      - name: Install Nautilus Librarian
+        run: |
+          pip install --upgrade nautilus-librarian
+          nautilus-librarian --version
 
-      - name: Import GPG key used for testing
+      - name: Import GPG key to sign commits
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@baa427b5b44047bccaea7f847cb94252ace52c90
         with:
