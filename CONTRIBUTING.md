@@ -30,6 +30,7 @@ This project is still at a proof of concept stage. That means the final reposito
 
 Before creating bug reports, please check if the problem has already been reported. If it has and the issue is still open, add a comment to the existing issue instead of opening a new one. If you find a Closed issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
+<!-- markdown-link-check-disable-next-line -->
 If the problem hasn't been reported, create a new [GitHub issue](https://guides.github.com/features/issues/), providing the following information:
 
 - **A clear and descriptive title**  for the issue to identify the problem.
@@ -39,6 +40,7 @@ If the problem hasn't been reported, create a new [GitHub issue](https://guides.
 
 ### New features suggestion
 
+<!-- markdown-link-check-disable-next-line -->
 Features / improvement suggestions are submitted as  [GitHub issues](https://guides.github.com/features/issues/).  Please, before submitting a new one, please check if the improvement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 When creating an improvement issue, please provide the following information:
 

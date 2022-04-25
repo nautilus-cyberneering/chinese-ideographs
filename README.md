@@ -5,7 +5,6 @@
 ## Content
 
 - [Project Description](#project-description)
-- [Project Roadmap](#project-roadmap)
 - [Project Documentation](#project-documentation)
 
 ---

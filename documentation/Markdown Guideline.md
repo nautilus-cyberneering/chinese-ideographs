@@ -4,6 +4,7 @@ In order to be consistent in the creation of our documentation using Markdown we
 
 ## Markdown guideline  
 
+<!-- markdown-link-check-disable-next-line -->
 We will follow the following Markdown best practices recommended by [Github](https://guides.github.com/features/mastering-markdown/)
 
 ## Markdown linting  
